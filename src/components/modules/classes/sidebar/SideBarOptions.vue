@@ -1,4 +1,6 @@
 
 <template>
-  sdfsdfsdfsdf
+  <div>
+      sdfsdfsdfsdf
+  </div>
 </template>

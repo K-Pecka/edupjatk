@@ -1,5 +1,4 @@
 <script setup>
-import '@/assets/styles/modules/classes/style.css';
 
 import { useCounterStore } from '@/stores/modules/classes/main'
 import {ref, toRefs} from 'vue'
@@ -59,3 +58,6 @@ const enableClassManagementModal = () => {
     <div>your content...</div>
   </Modal>
 </template>
+<style scoped src='@/assets/styles/modules/classes/style.css'>
+
+</style>

@@ -1,5 +1,6 @@
-@media (min-width: 1024px) {
+
   body {
+    min-height: 100vh;
     display: flex;
     place-items: center;
   }
@@ -8,4 +9,3 @@
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
-}

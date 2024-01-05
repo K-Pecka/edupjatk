@@ -1,5 +1,4 @@
 <script setup>
-import '@/assets/styles/modules/classes/style.css';
 import SideBarOptions from '@/components/modules/classes/sidebar/SideBarOptions.vue'
 
 import {useCounterStore} from '@/stores/modules/classes/main'
@@ -75,9 +74,12 @@ function enableJoinCreateClassModal() {
         <component :is="currentComponent" />
       </div>
     </div>
-  </div>
-  <Modal v-model:visible="isJoinCreateClassModalVisible" class="bg-white" title="Dołącz do klasy lub stwórz swoją własną!" :okButton="{text: 'Dołącz', onclick: joinClass}" :cancelButton="{text: 'Powrót'}">
+    <Modal v-model="isJoinCreateClassModalVisible" class="bg-white" title="Dołącz do klasy lub stwórz swoją własną!" :okButton="{text: 'Dołącz', onclick: joinClass}" :cancelButton="{text: 'Powrót'}">
     <div>Podaj kod dostępu do klasy...</div>
     <input class="rounded border-gray text-white w-75" placeholder="Miejsce na kod">
   </Modal>
+  </div>
 </template>
+<style scoped src='@/assets/styles/modules/classes/style.css'>
+
+</style>
