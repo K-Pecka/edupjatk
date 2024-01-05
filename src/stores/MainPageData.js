@@ -43,6 +43,11 @@ const buttons = {
       label: 'zarejestruj się',
       to: { name: 'SignUp' },
       class: ['btn-secondary']
+    },
+    {
+      label: '+',
+      to: { name: 'classes-home' },
+      class: ['btn-secondary']
     }
   ],
   style: {

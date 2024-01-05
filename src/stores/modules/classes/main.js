@@ -10,18 +10,18 @@ export const useCounterStore = defineStore('counter', () => {
     let dragEnterId = null
     const choosenOption = ref('classes')
     const rooms = ref([
-        {uuid: 1, name: 'apple', image: require('@/assets/icons/more_horiz.svg'), order: '1', allowedUsers: ['']}, // testowe rozwiazanie
-        {uuid: 2, name: 'lion', image: require('@/assets/images/square.png'), order: '2', allowedUsers: ['']}, // testowe rozwiazanie
-        {uuid: 3, name: 'elephant', image: require('@/assets/images/square.png'), order: '3', allowedUsers: ['']}, // testowe rozwiazanie
-        {uuid: 4, name: 'giraffe', image: require('@/assets/icons/more_horiz.svg'), order: '4', allowedUsers: ['']}, // testowe rozwiazanie
-        {uuid: 5, name: 'orange', image: require('@/assets/images/square.png'), order: '5', allowedUsers: ['']}, // testowe rozwiazanie
-        {uuid: 6, name: 'whale', image: require('@/assets/images/square.png'), order: '6', allowedUsers: ['']}, // testowe rozwiazanie
-        {uuid: 7, name: 'newt', image: require('@/assets/icons/more_horiz.svg'), order: '7', allowedUsers: ['']}, // testowe rozwiazanie
-        {uuid: 8, name: 'otter', image: require('@/assets/images/square.png'), order: '8', allowedUsers: ['']}, // testowe rozwiazanie
-        {uuid: 9, name: 'llama', image: require('@/assets/images/square.png'), order: '9', allowedUsers: ['']}, // testowe rozwiazanie
-        {uuid: 10, name: 'octopus', image: require('@/assets/images/square.png'), order: '10', allowedUsers: ['']},// testowe rozwiazanie
-        {uuid: 11, name: 'owl', image: require('@/assets/images/square.png'), order: '11', allowedUsers: ['']}, // testowe rozwiazanie
-        {uuid: 12, name: 'leopard', image: require('@/assets/icons/more_horiz.svg'), order: '12', allowedUsers: ['']} // testowe rozwiazanie
+        {uuid: 1, name: 'apple', image: import('@/assets/icons/more_horiz.svg'), order: '1', allowedUsers: ['']}, // testowe rozwiazanie
+        {uuid: 2, name: 'lion', image: import('@/assets/images/square.png'), order: '2', allowedUsers: ['']}, // testowe rozwiazanie
+        {uuid: 3, name: 'elephant', image: import('@/assets/images/square.png'), order: '3', allowedUsers: ['']}, // testowe rozwiazanie
+        {uuid: 4, name: 'giraffe', image: import('@/assets/icons/more_horiz.svg'), order: '4', allowedUsers: ['']}, // testowe rozwiazanie
+        {uuid: 5, name: 'orange', image: import('@/assets/images/square.png'), order: '5', allowedUsers: ['']}, // testowe rozwiazanie
+        {uuid: 6, name: 'whale', image: import('@/assets/images/square.png'), order: '6', allowedUsers: ['']}, // testowe rozwiazanie
+        {uuid: 7, name: 'newt', image: import('@/assets/icons/more_horiz.svg'), order: '7', allowedUsers: ['']}, // testowe rozwiazanie
+        {uuid: 8, name: 'otter', image: import('@/assets/images/square.png'), order: '8', allowedUsers: ['']}, // testowe rozwiazanie
+        {uuid: 9, name: 'llama', image: import('@/assets/images/square.png'), order: '9', allowedUsers: ['']}, // testowe rozwiazanie
+        {uuid: 10, name: 'octopus', image: import('@/assets/images/square.png'), order: '10', allowedUsers: ['']},// testowe rozwiazanie
+        {uuid: 11, name: 'owl', image: import('@/assets/images/square.png'), order: '11', allowedUsers: ['']}, // testowe rozwiazanie
+        {uuid: 12, name: 'leopard', image: import('@/assets/icons/more_horiz.svg'), order: '12', allowedUsers: ['']} // testowe rozwiazanie
     ])
 
     function onDragOver(event) {
