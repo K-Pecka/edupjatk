@@ -21,7 +21,7 @@ const enableClassManagementModal = () => {
   <div
       v-for="(room, index) of rooms"
       :key="index"
-      class="row col-2 pt-2 m-3 pb-3 px-4 class-container border border-gray shadow class rounded justify-content-center"
+      class="row m-2 pt-2 pb-3 px-4 class-container border border-gray shadow class rounded justify-content-center"
       @dragover.prevent="onDragOver"
       @dragenter="onDragEnter(index)"
       @dragleave="onDragLeave"
@@ -36,7 +36,7 @@ const enableClassManagementModal = () => {
         draggable="false"
     >
       <img
-          class="h-75 rounded"
+          class="h-75 rounded col-6"
           draggable="false"
           :src="room.image"
           alt="settings"

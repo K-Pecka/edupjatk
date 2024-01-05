@@ -56,11 +56,11 @@ function enableJoinCreateClassModal() {
           </div>
         </div>
       </div>
-      <div class="col-11 row h-50 p-3 border-bottom border-gray justify-content-between align-content-center">
+      <div class="col-11 row h-50 p-3 border-bottom border-gray justify-content-end">
         <span class="row font-weight-bold align-content-center">Klasy</span>
-        <div id="join-create-class-button" class="col-auto row border border-gray p-ripple" v-ripple style="height: 30px;" @click="enableJoinCreateClassModal">
-          <img class="row h-100 mr-2" src="@/assets/icons/more_horiz.svg" alt="menu">
-          <span class="row align-content-center">
+        <div id="join-create-class-button" class="col-auto row border border-gray" style="height: 30px;" @click="enableJoinCreateClassModal">
+          <img class="row h-100 p-0 w-auto" src="@/assets/icons/more_horiz.svg" alt="menu">
+          <span class="row align-content-center w-auto">
             Dołącz do klasy
           </span>
         </div>
@@ -71,7 +71,7 @@ function enableJoinCreateClassModal() {
         <component :is="SideBarOptions" />
       </div>
 
-      <div id="main-content-container" class="col-md-11 row h-auto pl-5 pb-auto mb-auto">
+      <div id="main-content-container" class="col-md-11 row h-auto py-5 pb-auto mb-auto">
         <component :is="currentComponent" />
       </div>
     </div>
