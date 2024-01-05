@@ -1,24 +1,19 @@
-import x from '@/views/x.vue';
-
 const UserRoutes = [
   {
-    path: '/user/:id',
-    name: 'user-parent',
-    component: x,
-    children: [
-      { path: '', name: 'user', component: x },
-      {
-        path: 'x',
-        name: 'x',
-        component: x,
-      },
-      {
-        path: 'x',
-        name: 'x',
-        component: x,
-      },
-    ],
+    path: '/',
+    name: 'home',
+    component: () => import('@/views/HomeView.vue')
   },
-];
+  {
+    path: '/register',
+    name: 'SignUp',
+    component: () => import('@/views/RegisterView.vue')
+  },
+  {
+    path: '/login',
+    name: 'logIn',
+    component: () => import('@/views/LoginView.vue')
+  }
+]
 
-export default UserRoutes;
+export default UserRoutes
