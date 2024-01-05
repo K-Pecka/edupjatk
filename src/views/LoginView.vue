@@ -1,70 +1,77 @@
 <template>
-    <section>
-      <MainHeader :message="headerMessage"/>
-      <PrintListButton :buttons="buttons"/>
-    </section>
-  </template>
-  
-  <script setup>
-  import MainHeader from '@/components/stateless/PrintHeader.vue';
-  import PrintListButton from '@/components/stateless/PrintListButton.vue';
 
-  const headerMessage = {
-    title: "Lorem ipsum dolor sit amet, adipisicing elit!",
-    content: [
-      `Lorem <strong>ipsum</strong> <a href="#">dolor</a> sit amet consectetur, adipisicing elit. Quod est incidunt autem consequuntur. Labore neque, veniam ducimus fugiat quia consequatur dolor odit suscipit deserunt at reprehenderit ipsum et nisi cupiditate molestiae natus quibusdam impedit, veritatis maxime illum illo consequuntur officiis est ipsa? Enim ut fugiat voluptatum quia excepturi, quibusdam natus!`,
-      `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod est incidunt autem consequuntur. Labore neque, veniam ducimus fugiat quia consequatur dolor odit suscipit deserunt at reprehenderit ipsum et nisi cupiditate molestiae natus quibusdam impedit, veritatis maxime illum illo consequuntur officiis est ipsa? Enim ut fugiat voluptatum quia excepturi, quibusdam natus!`
-    ],
-    style:{
-        h1:{
-            'margin-bottom':'5%',
-            'letter-spacing':'5px',
-            'text-align': 'justify'
-        },
-        p:{
-            'margin-bottom':'2%',
-            'letter-spacing':'2px',
-            'text-align': 'justify'
-        }
-    },
-    class:{
-        p:['text-justify']
-    }
-  };
-  const buttons = {
-    buttons:[
-    {
-            label:"-",
-            to:{name:"logIn"},
-            class:['btn-primary']
-        },
-        {
-            label:"zarejestruj się",
-            to:{name:"SignUp"},
-            class:['btn-secondary']
-        }
-    ],
-    style:{
-        button:{
-            'width':'80%',
-            'padding':'3%',
-            'margin-bottom':'5%'
-        },
-        div:{
-            
-        }
-    },
-    className:
-    {
-        button:['btn'],
-        div:['d-flex', 'align-items-center', 'justify-content-center', 'flex-column']
-    }
-  }
-  </script>
+  <section>
+    <div class="container mt-5">
+    <h2 class="mb-4">Login</h2>
+    <form @submit.prevent="login">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username:</label>
+          <input type="text" v-model="username" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password:</label>
+          <input type="password" v-model="password" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </section>
   
+</template>
+
+<script setup>
+import {ref} from  'vue'
+const username = ref('');
+const password = ref('');
+
+const login = () => {
+  console.log('Logging in with:', username.value, password.value);
+};
+</script>
 <style>
 body{
     background-image: url('@/assets/background-home.png');
     background-size: cover;
   }
+.login-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
 </style>

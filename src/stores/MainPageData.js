@@ -61,8 +61,8 @@ const buttons = {
         },
         hover:
         {
-            width: '90%',
-            padding: '5%',
+            width: '85%',
+            padding: '6%',
         }
     },
     div: {}
