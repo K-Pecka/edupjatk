@@ -1,7 +1,10 @@
 <script setup>
+
 import { useStore } from '@/stores/userStorage.js'
-const Panel = useStore.getPanel()
+const store = useStore()
+const Panel = store.getPanel()
 console.log(Panel)
+
 </script>
 
 <template>

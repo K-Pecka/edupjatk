@@ -1,18 +1,21 @@
 import { defineStore } from 'pinia'
 
+import userPanel from '@/components/panel/user/initComponents.vue'
+import techerPanel from '@/components/panel/teacher/initComponents.vue'
 
 export const useStore = defineStore('user', () => {
     
     function getPermission()
     {
-        return getPanel('user')
+        return 'teacher'
     }
     function getPanel()
     {
-        let panel={
-            'user':import('@components/Panel/user/init.vue'),
-            'teacher':import('@components/Panel/teacher/init.vue')
+        const panel={
+            'user':userPanel,
+            'teacher':techerPanel
         }
-        return panel[getPermission()]
+        return panel[getPermission()] || userPanel
     }
+    return {getPanel,getPermission}
 })

@@ -13,13 +13,12 @@ const UserRoutes = [
     path: '/login',
     name: 'logIn',
     component: () => import('@/views/LoginView.vue')
+  },
+  {
+    path: '/Panel',
+    name: 'panel',
+    component: () => import('@/views/PanelView.vue')
   }
-  // },
-  // {
-  //   path: '/panel',
-  //   name: 'panel',
-  //   component: () => import('@/views/PanelView.vue')
-  // }
 ]
 
 export default UserRoutes

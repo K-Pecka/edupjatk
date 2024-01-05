@@ -58,6 +58,6 @@ const enableClassManagementModal = () => {
     <div>your content...</div>
   </Modal>
 </template>
-<style scoped src='@/assets/styles/modules/classes/style.css'>
-
+<style scoped>
+@import '@/assets/styles/modules/classes/style.css'
 </style>

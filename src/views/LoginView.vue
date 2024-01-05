@@ -12,7 +12,7 @@ import LogIn from '@/components/login/Login.vue'
   
 </template>
 
-<style>
+<style scoped>
 body{
     background-image: url('@/assets/background-home.png');
     background-size: cover;
