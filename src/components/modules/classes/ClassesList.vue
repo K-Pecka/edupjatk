@@ -5,9 +5,6 @@ import { useCounterStore } from '@/stores/modules/classes/main'
 import {ref, toRefs} from 'vue'
 
 import { Modal } from 'usemodal-vue3';
-// import { useRouter } from 'vue-router'
-
-// const router = useRouter()
 
 const isClassManagementModalVisible = ref(false)
 
