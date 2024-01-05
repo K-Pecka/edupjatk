@@ -1,0 +1,27 @@
+#join-create-class-button {
+  cursor: pointer;
+}
+
+#first-bar, #side-panel, #side-panel-header {
+  background: rgb(235, 235, 235, 1);
+}
+
+.row {
+  margin: 0 !important;
+}
+
+.side-bar-option {
+  cursor: pointer;
+  padding: 0;
+}
+
+.class {
+  background: #f0f0f0;
+  height: 200px;
+  width: 250px;
+  cursor: pointer;
+}
+
+.class:hover {
+  border: 2px dashed blue;
+}
