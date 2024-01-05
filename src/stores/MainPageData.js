@@ -46,7 +46,7 @@ const buttons = {
     },
     {
       label: '+',
-      to: { name: 'classes-home' },
+      to: { name: 'classes' },
       class: ['btn-secondary']
     }
   ],

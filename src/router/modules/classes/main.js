@@ -1,7 +1,7 @@
 const ClassesRoutes = [
   {
-    path: '/',
-    name: 'classes-home',
+    path: '/classes',
+    name: 'classes',
     component: () => import('@/pages/TestPage.vue')
   },
 ]
