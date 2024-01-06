@@ -42,12 +42,18 @@ const buttons = {
     {
       label: 'zarejestruj się',
       to: { name: 'SignUp' },
-      class: ['btn-secondary']
+      class: ['btn-secondary'],
     },
     {
       label: '+',
       to: { name: 'classes' },
-      class: ['btn-secondary']
+      class: ['btn-secondary'],
+      
+    },
+    {
+      label: 'Panel',
+      to: { name: 'panel' },
+      class: ['btn-secondary'],
     }
   ],
   style: {

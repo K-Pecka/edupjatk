@@ -13,9 +13,3 @@ const headerMessage = {}
 const buttons = {}
 </script>
 
-<style scoped>
-body{
-    background-image: url('@/assets/background-home.png');
-    background-size: cover;
-  }
-</style>

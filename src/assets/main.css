@@ -1,11 +1,21 @@
 
-  body {
-    min-height: 100vh;
-    display: flex;
-    place-items: center;
-  }
-  section {
+body {
+  position: relative;
+  background-image: url('@/assets/images/backgrounds/background-home.svg');
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+}
+
+  .page {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
+a
+{
+  list-style-type: none;
+  color:#efe;
+}
