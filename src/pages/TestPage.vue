@@ -24,7 +24,7 @@ function enableJoinCreateClassModal() {
 </script>
 
 <template>
-  <div id="page-container" class="w-100 h-100">
+  <div id="page-container" class="w-100">
     <div id="top-panel" class="col-12 row border-bottom border-gray p-0 justify-content-between">
       <div id="logo-container" class="col-1 p-0 row h-100 justify-content-center align-content-center">
         <img class="p-0" src="@/assets/icons/more_horiz.svg" alt="Logo" height="80" width="50" />
@@ -120,5 +120,8 @@ function enableJoinCreateClassModal() {
 .side-bar-option:hover {
   background: #d9d9d9;
 }
-
+#page-container
+{
+  height: 100vh;
+}
 </style>

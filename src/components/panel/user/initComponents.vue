@@ -1,7 +1,5 @@
 <script setup>
-import { truncate } from "fs";
-
-//import PrintnavBar from '@/components/stateless/PrintnavBar.vue'
+import PrintListButton from '@/components/stateless/PrintListButton.vue'
 const ListItems = {
   buttons: [
     { label: 'ustawienia', to: { name: 'logIn' }, class: ['btn-primary'] },
@@ -25,20 +23,19 @@ const ListItems = {
     div: {}
   },
   className: {
-    button: ['btn', 'animation-1','p-ripple'],
+    button: ['btn', 'animation-1', 'p-ripple'],
     div: ['d-flex', 'align-items-center', 'justify-content-center', 'flex-column']
-  },
-  atrribute:{
-    'v-ripple':true
   }
 }
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faBrush } from '@fortawesome/free-solid-svg-icons'
 </script>
 
 <template>
   <section>
-    <!-- <Navbar :buttons="ListItems" /> -->
+    <font-awesome-icon :icon="faBrush" />
     <nav>
-      <!-- <Navbar :buttons="ListItems" /> -->
+      <PrintListButton :buttons="ListItems" />
     </nav>
     <div class="card card-container flex justify-content-center align-items-center">
       <div
@@ -50,10 +47,3 @@ const ListItems = {
     </div>
   </section>
 </template>
-
-<style>
-div{
-    width: 100px;
-    height: 100px;
-}
-</style>

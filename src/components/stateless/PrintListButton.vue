@@ -23,6 +23,7 @@ const handleMouseLeave = () => {
         :class="[generalClass?.button, ...buttonItem?.class]"
         @mouseenter="() => handleMouseEnter(index)"
         @mouseleave="handleMouseLeave"
+        v-ripple
       >
         <li>
           <img
