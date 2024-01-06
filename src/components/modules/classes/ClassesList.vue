@@ -1,7 +1,6 @@
 <script setup>
-
 import { useCounterStore } from '@/stores/modules/classes/main'
-import {ref, toRefs} from 'vue'
+import { ref, toRefs } from 'vue'
 
 import { Modal } from 'usemodal-vue3';
 
@@ -20,7 +19,7 @@ const enableClassManagementModal = () => {
   <div
       v-for="(room, index) of rooms"
       :key="index"
-      class="row m-2 pt-2 pb-3 px-4 class-container border border-gray shadow class rounded justify-content-center"
+      class="row mt-3 mx-2 class-container border border-gray shadow class rounded justify-content-center"
       @dragover.prevent="onDragOver"
       @dragenter="onDragEnter(index)"
       @dragleave="onDragLeave"
@@ -45,9 +44,9 @@ const enableClassManagementModal = () => {
         class="col-12 row justify-content-between h-25"
         draggable="false"
     >
-      <span class="h-50" draggable="false">{{ room.name }}</span>
+      <span class="h-50 col-6" draggable="false">{{ room.name }}</span>
       <img
-          class="h-50"
+          class="h-50 col-1 rounded"
           draggable="false"
           src="@/assets/icons/more_horiz.svg"
           alt="settings"
@@ -58,6 +57,21 @@ const enableClassManagementModal = () => {
     <div>your content...</div>
   </Modal>
 </template>
+
 <style scoped>
-@import '@/assets/styles/modules/classes/style.css'
+
+.row {
+  margin: 0;
+}
+
+.class {
+  background: #f0f0f0;
+  height: 200px;
+  width: 280px;
+  cursor: pointer;
+}
+
+.class:hover {
+  border: 2px dashed blue;
+}
 </style>

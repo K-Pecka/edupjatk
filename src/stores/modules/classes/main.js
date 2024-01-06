@@ -24,6 +24,10 @@ export const useCounterStore = defineStore('counter', () => {
         {uuid: 12, name: 'leopard', image: 'src/assets/icons/more_horiz.svg', order: '12', allowedUsers: [''], pass: 'cV9bB1mM4nZx'} // testowe rozwiazanie
     ])
 
+    const options = ['hhhhhhhhhhhh', 'wwwwwwwww', 'ddddddddddd', 'ppppppppppp']
+    const side_panel = [{ text: 'Home', routing: 'classes' }, { text: 'Module', routing: 'module' }, { text: 'Home', routing: 'classes' }, { text: 'Module', routing: 'module' }, { text: 'Home', routing: 'classes' }, { text: 'Module', routing: 'module' }, { text: 'Home', routing: 'classes' }, { text: 'Module', routing: 'module' }]
+
+
     function onDragOver(event) {
         event.preventDefault()
     }
@@ -78,5 +82,5 @@ export const useCounterStore = defineStore('counter', () => {
         }
     })
 
-    return { onDragOver, rooms, onDragLeave, onDrop, onDragEnter, onDragStart, draggedItemId, dragEnterId, choosenOption, currentComponent }
+    return { onDragOver, rooms, onDragLeave, onDrop, onDragEnter, onDragStart, draggedItemId, dragEnterId, choosenOption, currentComponent, options, side_panel }
 })
