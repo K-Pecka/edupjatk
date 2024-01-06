@@ -24,6 +24,8 @@ export const useCounterStore = defineStore('counter', () => {
         {uuid: 12, name: 'leopard', image: 'src/assets/icons/more_horiz.svg', order: '12', allowedUsers: [''], pass: 'cV9bB1mM4nZx'} // testowe rozwiazanie
     ])
 
+    const kids = [{name: 'Andrzej', class: '3b', hidden: false}, {name: 'Mateusz', class: '2c', hidden: false}, {name: 'Kacper', class: '1a', hidden: true}]
+
     const options = ['hhhhhhhhhhhh', 'wwwwwwwww', 'ddddddddddd', 'ppppppppppp']
     const side_panel = [{ text: 'Home', routing: 'classes' }, { text: 'Module', routing: 'module' }, { text: 'Home', routing: 'classes' }, { text: 'Module', routing: 'module' }, { text: 'Home', routing: 'classes' }, { text: 'Module', routing: 'module' }, { text: 'Home', routing: 'classes' }, { text: 'Module', routing: 'module' }]
 
@@ -82,5 +84,5 @@ export const useCounterStore = defineStore('counter', () => {
         }
     })
 
-    return { onDragOver, rooms, onDragLeave, onDrop, onDragEnter, onDragStart, draggedItemId, dragEnterId, choosenOption, currentComponent, options, side_panel }
+    return { onDragOver, rooms, onDragLeave, onDrop, onDragEnter, onDragStart, draggedItemId, dragEnterId, choosenOption, currentComponent, options, side_panel, kids }
 })

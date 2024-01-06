@@ -43,14 +43,14 @@ function enableJoinCreateClassModal() {
     </div>
     <div id="page-content" class="row">
       <nav id="side-panel">
-        <ul class="row col-12 p-0">
+        <ul class="row col-12 p-0 justify-content-end">
           <li
             v-for="(side_panel_option, index) of side_panel"
             :key="index"
             :style="{
-              borderLeft: side_panel_option.routing === choosenOption ? '#d9d9d9 2px solid' : ''
+              borderLeft: side_panel_option.routing === choosenOption ? '#4567CC 3px solid' : ''
             }"
-            class="col-12 row mt-1 justify-content-center align-content-center side-bar-option"
+            class="row mt-1 justify-content-center align-content-center side-bar-option"
             @click="chooseOption(side_panel_option.routing)"
           >
             <img src="@/assets/icons/more_horiz.svg" alt="side_panel_header" height="40" />
@@ -72,7 +72,6 @@ function enableJoinCreateClassModal() {
         </div>
       </div>
     </div>
-    {{isJoinCreateClassModalVisible}}
   </div>
   <Modal v-model:visible="isJoinCreateClassModalVisible" class="bg-white" title="Dołącz do klasy lub stwórz swoją własną!"
          :okButton="{text: 'Dołącz', onclick: joinClass}" :cancelButton="{text: 'Powrót'}">
@@ -91,11 +90,16 @@ function enableJoinCreateClassModal() {
 }
 
 #side-panel, #logo-container {
+  padding: 0;
   width: 6%;
 }
 
 #current-component-container {
   width: 94%
+}
+
+#join-create-class-button:hover {
+  background: #f0f0f0;
 }
 
 .top-bar-buttons {
@@ -105,7 +109,7 @@ function enableJoinCreateClassModal() {
 }
 
 .top-bar-buttons:hover {
-  background: #d9d9d9;
+  background: #f5f5f5;
 }
 
 .row {
@@ -115,10 +119,11 @@ function enableJoinCreateClassModal() {
 .side-bar-option {
   cursor: pointer;
   padding: 0;
+  width: 97%;
 }
 
 .side-bar-option:hover {
-  background: #d9d9d9;
+  background: #f5f5f5;
 }
 #page-container
 {

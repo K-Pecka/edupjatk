@@ -1,3 +1,7 @@
+<template>
+    <div>student</div>
+</template>
+  
 <script setup>
 import PrintListButton from '@/components/stateless/PrintListButton.vue'
 const ListItems = {

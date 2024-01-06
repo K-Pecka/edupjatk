@@ -9,15 +9,17 @@ const hoveredButtonIndex = ref(null)
 const handleMouseEnter = (index) => {
   hoveredButtonIndex.value = index
 }
+
 const handleMouseLeave = () => {
   hoveredButtonIndex.value = null
 }
 </script>
 
 <template>
-  <div :class="generalClass?.div" :style="style?.div">
-    <transition name="bounce" appear v-for="(buttonItem, index) in buttons" :key="index">
-      <router-link
+    <div :class="generalClass?.div" :style="style?.div">
+      <transition name="bounce" appear v-for="(buttonItem, index) in buttons"
+        :key="index">
+        <router-link
         :to="buttonItem?.to"
         :style="[style?.button?.normal, index === hoveredButtonIndex ? style?.button?.hover : {}]"
         :class="[generalClass?.button, ...buttonItem?.class]"
@@ -25,19 +27,11 @@ const handleMouseLeave = () => {
         @mouseleave="handleMouseLeave"
         v-ripple
       >
-        <li>
-          <img
-            v-if="buttonItem.img"
-            :src="buttonItem?.img.src"
-            :alt="buttonItem?.img.src"
-            :class="buttonItem?.img.class"
-            :style="buttonItem?.img.style"
-          />
-          {{ buttonItem.label }}
-        </li>
+        {{ buttonItem.label }}
       </router-link>
-    </transition>
-  </div>
+      </transition>
+      
+    </div>
 </template>
 
 <style scoped>
