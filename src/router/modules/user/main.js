@@ -2,22 +2,17 @@ const UserRoutes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/HomeView.vue')
+    component: () => import('@/views/homeView.vue')
   },
   {
     path: '/register',
     name: 'SignUp',
-    component: () => import('@/views/RegisterView.vue')
+    component: () => import('@/views/registerView.vue')
   },
   {
     path: '/login',
     name: 'logIn',
-    component: () => import('@/views/LoginView.vue')
-  },
-  {
-    path: '/Panel',
-    name: 'panel',
-    component: () => import('@/views/PanelView.vue')
+    component: () => import('@/views/loginView.vue')
   }
 ]
 

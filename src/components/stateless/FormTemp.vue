@@ -5,7 +5,6 @@ const emit = defineEmits(['onSubmit'])
 
 const props = defineProps(['formFields']);
 const { button, className: generalClass,formFields } = props.formFields;
-console.log(formFields)
 
 const login = () => {
   const formData = formFields.reduce((data, field) => {

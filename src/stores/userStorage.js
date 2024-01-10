@@ -7,7 +7,7 @@ export const useStore = defineStore('user', () => {
     
     function getPermission()
     {
-        return 'teacher'
+        return 'user'
     }
     function getPanel()
     {

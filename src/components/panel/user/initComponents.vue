@@ -1,53 +1,42 @@
-<template>
-    <div>student</div>
-</template>
-  
 <script setup>
-import PrintListButton from '@/components/stateless/PrintListButton.vue'
-const ListItems = {
-  buttons: [
-    { label: 'ustawienia', to: { name: 'logIn' }, class: ['btn-primary'] },
-    { label: 'profil', to: { name: 'SignUp' }, class: ['btn-secondary'] },
-    { label: 'testy', to: { name: 'classes' }, class: ['btn-secondary'] },
-    { label: 'Statystyki', to: { name: 'panel' }, class: ['btn-secondary'] },
-    { label: 'Wyloguj', to: { name: 'panel' }, class: ['btn-secondary'] }
-  ],
-  style: {
-    button: {
-      normal: {
-        width: '80%',
-        padding: '3%',
-        'margin-bottom': '5%',
-        background: 'linear-gradient(to left, #50c0bd, #8792da)'
-      },
-      hover: {
-        width: '85%'
-      }
-    },
-    div: {}
-  },
-  className: {
-    button: ['btn', 'animation-1', 'p-ripple'],
-    div: ['d-flex', 'align-items-center', 'justify-content-center', 'flex-column']
-  }
-}
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faBrush } from '@fortawesome/free-solid-svg-icons'
+import navBar from '@/components/navBar/initComponents.vue'
+import displayPanel from './displayPanel.vue'
 </script>
 
 <template>
   <section>
-    <font-awesome-icon :icon="faBrush" />
-    <nav>
-      <PrintListButton :buttons="ListItems" />
-    </nav>
-    <div class="card card-container flex justify-content-center align-items-center">
-      <div
-        v-ripple
-        class="p-ripple bg-primary flex select-none justify-content-center align-items-center shadow-2 border-round p-6 font-bold"
-      >
-        Default
-      </div>
-    </div>
+    <navBar />
+    <displayPanel />
   </section>
 </template>
+<style scoped>
+section
+{
+  height: 100vh;
+  width: 100vw;
+}
+.panel
+{
+  width: 96%;
+  min-height: 85vh;
+  transform: translate(2vw, 10vh);
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Styl dla efektu szkła */
+.panel:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  opacity: 0.2; 
+  transform: scale(1.5); 
+  filter: blur(10px);
+  z-index: -1;
+}
+</style>

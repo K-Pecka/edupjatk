@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container page">
     <MainHeader :message="headerMessage" />
     <PrintListButton :buttons="buttons" />
   </section>
