@@ -1,5 +1,6 @@
 const ListItems = {
     buttons: [
+      { label: 'start', to: { name: 'panel' }, class: ['btn-primary'] },
       { label: 'ustawienia', to: { name: 'setting' }, class: ['btn-primary'] },
       { label: 'profil', to: { name: 'profile' }, class: ['btn-secondary'] },
       { label: 'testy', to: { name: 'setting' }, class: ['btn-secondary'] },

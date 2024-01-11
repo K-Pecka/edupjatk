@@ -1,6 +1,5 @@
 <script setup>
 import ListItems from '@/stores/panelButtonData.js'
-console.log(ListItems)
 </script>
 
 <template>

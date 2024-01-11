@@ -1,5 +1,6 @@
 const loginData = {
     formFields:[{
+        name:'email',
         label:'Username:',
         type:'text',
         placeholder:'Podaj login',
@@ -11,6 +12,7 @@ const loginData = {
             required:true,
         }
     },{
+        name:'password',
         label:'Password:',
         type:'password',
         placeholder:'Podaj hasło',

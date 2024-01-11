@@ -6,16 +6,16 @@ const emit = defineEmits(['onSubmit'])
 const props = defineProps(['formFields']);
 const { button, className: generalClass,formFields } = props.formFields;
 
-const login = () => {
+const sendForm = () => {
   const formData = formFields.reduce((data, field) => {
-    data[field.label] = field.value;
+    data[field.name] = field.value;
     return data;
   }, {});
   emit('onSubmit', formData);
 };
 </script>
 <template>
-  <form @submit.prevent="login">
+  <form @submit.prevent="sendForm">
     <div v-for="field in formFields" :key="field.label" :class="generalClass">
       <label :class="field?.class.label">{{ field?.label }}</label>
       <input

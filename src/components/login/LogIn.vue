@@ -2,11 +2,21 @@
 
 import FormTemp from '@/components/stateless/FormTemp.vue'
 import loginData from '@/stores/loginPageData.js'
+import { useStore } from '@/stores/userStorage.js'
+import { useRouter } from 'vue-router';
 
-const handleFormSubmit = (formData) => 
-{
+const router = useRouter();
+const store = useStore()
+
+const handleFormSubmit =  (formData) => {
   try {
-    console.log('Received form data:', formData);
+    let findUser = store.getUser(formData);
+    if (findUser.status) {
+      console.log(findUser.message);
+      setTimeout(()=>router.push('/Panel'),findUser.time);
+    } else {
+      console.log(findUser.message);
+    }
   } catch (error) {
     console.error('Error handling form submit:', error);
   }
