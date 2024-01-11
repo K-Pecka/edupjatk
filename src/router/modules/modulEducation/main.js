@@ -8,13 +8,12 @@ const modulRouters = [
   {
     path: '/education/:chapter',
     component: () => import('@/views/panel/modulEducation/chapterView.vue'),
-    children: [
-      {
-        path: ':module',
-        name: 'ModuleView',
-        component: () => import('@/views/panel/modulEducation/modulView.vue'),
-      },
-    ],
+  },
+  {
+    path: '/education/:chapter/:module',
+    name: 'ModuleView',
+    component: () => import('@/views/panel/modulEducation/modulView.vue'),
+    meta: { requiresAuth: true },
   },
 ];
 

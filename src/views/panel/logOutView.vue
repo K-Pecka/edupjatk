@@ -11,12 +11,17 @@ const handleAnimationEnd = () => setTimeout(() =>router.push('/'),2500);
     store.logOut();
     handleAnimationEnd();
 })();
+const lang = {
+    'en':'GoodBye',
+    'es':'Adios'
+}
+const goodbye = lang['es'] ?? 'GoodBye'
 </script>
 
 <template>
     <div class="goodbye-container">
         <div class="goodbye-message" @animationend="handleAnimationEnd">
-            <p>Goodbye!<span class="emoji">👋</span></p>
+            <p>{{goodbye}}!<span class="emoji">👋</span></p>
         </div>
     </div>
 </template>
