@@ -33,8 +33,8 @@ import ListItems from '@/stores/panelButtonData.js'
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav" :class="ListItems.className.div">
-            <li class="nav-item" v-for="item of ListItems.buttons" :key="item.label">
-              <router-link class="nav-link" aria-current="page" :to="item.to" :class="[item.class,ListItems.className.button]">{{item.label}}</router-link>
+            <li :style="ListItems.style.button.normal" class="nav-item" v-for="item of ListItems.buttons" :key="item.label">
+              <router-link  class="nav-link" aria-current="page" :to="item.to" :class="[item.class,ListItems.className.button]">{{item.label}}</router-link>
             </li>
           </ul>
         </div>

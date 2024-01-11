@@ -1,28 +1,26 @@
 const ListItems = {
     buttons: [
-      { label: 'start', to: { name: 'panel' }, class: ['btn-primary'] },
-      { label: 'ustawienia', to: { name: 'setting' }, class: ['btn-primary'] },
-      { label: 'profil', to: { name: 'profile' }, class: ['btn-secondary'] },
-      { label: 'testy', to: { name: 'setting' }, class: ['btn-secondary'] },
-      { label: 'Statystyki', to: { name: 'statistic' }, class: ['btn-secondary'] },
-      { label: 'Wyloguj', to: { name: 'logOut' }, class: ['btn-secondary'] }
+      { label: 'start', to: { name: 'panel' }, class: [] },
+      { label: 'ustawienia', to: { name: 'setting' }, class: [] },
+      { label: 'moduły', to: { name: 'educationModule' }, class: [] },
+      { label: 'profil', to: { name: 'profile' }, class: [] },
+      { label: 'testy', to: { name: 'setting' }, class: [] },
+      { label: 'Statystyki', to: { name: 'statistic' }, class: [] },
+      { label: 'Wyloguj', to: { name: 'logOut' }, class: [] }
     ],
     style: {
       button: {
         normal: {
           width: '80%',
-          padding: '3%',
-          'margin-bottom': '5%',
-          background: 'linear-gradient(to left, #50c0bd, #8792da)'
         },
         hover: {
-          width: '85%'
+          
         }
       },
       div: {}
     },
     className: {
-      button: ['btn', 'animation-1','mx-2','px-5'],
+      button: ['btn', 'animation-1','mx-2','p-md-3'],
       div: ['d-flex', 'align-items-center', 'justify-content-beetwen']
     }
   }
