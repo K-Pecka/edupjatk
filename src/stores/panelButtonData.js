@@ -1,12 +1,12 @@
 const ListItems = {
     buttons: [
-      { label: 'start', to: { name: 'panel' }, class: [] },
+      { label: 'start', to: { name: 'start' }, class: [] },
       { label: 'ustawienia', to: { name: 'setting' }, class: [] },
       { label: 'moduły', to: { name: 'educationModule' }, class: [] },
       { label: 'profil', to: { name: 'profile' }, class: [] },
       { label: 'testy', to: { name: 'setting' }, class: [] },
-      { label: 'Statystyki', to: { name: 'statistic' }, class: [] },
-      { label: 'Wyloguj', to: { name: 'logOut' }, class: [] }
+      { label: 'statystyki', to: { name: 'statistic' }, class: [] },
+      { label: 'wyloguj', to: { name: 'logOut' }, class: [] }
     ],
     style: {
       button: {
@@ -20,7 +20,7 @@ const ListItems = {
       div: {}
     },
     className: {
-      button: ['btn', 'animation-1','mx-2','p-md-3'],
+      button: ['btn', 'animation-1','mx-2','p-md-3','text-uppercase'],
       div: ['d-flex', 'align-items-center', 'justify-content-beetwen']
     }
   }

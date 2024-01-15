@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 const clockCanvas = ref(null)
 let ctx
@@ -112,22 +112,6 @@ const drawClockFace = () => {
   }
 }
 
-const drawHighlightedNumberBackground = () => {
-  const radius = 20
-  const angle = ((highlightedNumber.value - 3) * (2 * Math.PI)) / 12
-  const x = clockCanvas.value.width / 2 + Math.cos(angle) * 160 * 0.8
-  const y = clockCanvas.value.height / 2 + Math.sin(angle) * 160 * 0.8
-
-  const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius)
-  gradient.addColorStop(0, hourHandColor.value)
-  gradient.addColorStop(1, 'transparent')
-
-  ctx.beginPath()
-  ctx.arc(x, y, radius, 0, 2 * Math.PI)
-  ctx.fillStyle = gradient
-  ctx.fill()
-}
-
 const adjustMinutes = (amount) => {
   minutes += amount
   if (minutes >= 60) {
@@ -138,7 +122,7 @@ const adjustMinutes = (amount) => {
     hours = (hours - 1 + 24) % 24
   }
 
-  highlightedNumber.value = hours % 12 || -1  
+  highlightedNumber.value = hours % 12 || -1
   drawClock()
 }
 
@@ -156,22 +140,19 @@ const confirmTime = () => {
 }
 
 onMounted(() => {
-  ;(hours = Math.floor(Math.random() * 24)),
-    (minutes = Math.floor(Math.random() * 12) * 5),
-    (ctx = clockCanvas.value.getContext('2d'))
-  setInterval(
-    () => {
-      minutes = (minutes + 5) % 60
-      if (minutes === 0) {
-        hours = (hours + 1) % 24
-      }
+  hours = Math.floor(Math.random() * 24)
+  minutes = Math.floor(Math.random() * 12) * 5
+  ctx = clockCanvas.value.getContext('2d')
 
-      highlightedNumber.value = hours % 12 || 12
-      backgroundColor.value = '#fff'
-      drawClock()
-    },
-    1000 * 60 * 5
-  )
+  minutes = (minutes + 5) % 60
+  if (minutes === 0) {
+    hours = (hours + 1) % 24
+  }
+
+  highlightedNumber.value = hours % 12 || 12
+  drawClockFace()
+  backgroundColor.value = '#fff'
+
   drawClock()
 })
 </script>

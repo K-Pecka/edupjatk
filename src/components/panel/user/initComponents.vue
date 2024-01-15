@@ -20,6 +20,5 @@ section
   width: 96%;
   min-height: 85vh;
   transform: translate(2vw, 10vh);
-  background-color: #f0f0f0;
 }
 </style>

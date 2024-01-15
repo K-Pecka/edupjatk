@@ -16,8 +16,14 @@ const { headerMessage,buttons } = data
 </script>
 
 <style  scoped>
-body {
-  background-image: url('@/assets/background-home.png');
-  background-size: cover;
+section {
+  color:#eee;
+  padding:4em;
+  box-shadow: 1px 1px 5px 1px #999;
+  background: rgba(255, 255, 255, 0.15); 
+  backdrop-filter: blur(10px); 
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
 }
 </style>

@@ -25,6 +25,13 @@ const loginData = {
         }
     }],
     className:['mb-3'],
+    style:{
+        form:{
+            border:'5px solid #efefef',
+            padding:'2em',
+            'border-radius':'15px',
+        }
+    },
     button:{
         class:['btn', 'btn-primary'],
         label:"Zaloguj się"

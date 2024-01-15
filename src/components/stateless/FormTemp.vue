@@ -1,10 +1,9 @@
 <script setup>
-import { ref, defineEmits } from 'vue';
 
 const emit = defineEmits(['onSubmit'])
 
 const props = defineProps(['formFields']);
-const { button, className: generalClass,formFields } = props.formFields;
+const { button, className: generalClass,formFields,style } = props.formFields;
 
 const sendForm = () => {
   const formData = formFields.reduce((data, field) => {
@@ -15,7 +14,7 @@ const sendForm = () => {
 };
 </script>
 <template>
-  <form @submit.prevent="sendForm">
+  <form @submit.prevent="sendForm" :style="style?.form">
     <div v-for="field in formFields" :key="field.label" :class="generalClass">
       <label :class="field?.class.label">{{ field?.label }}</label>
       <input
