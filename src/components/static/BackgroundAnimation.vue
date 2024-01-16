@@ -13,16 +13,14 @@ let particles = [];
 let w, h;
 
 const opts = {
-  particleColor: "rgb(200,200,200)",
-  lineColor: "rgb(200,200,200)",
+  particleColors: ['#8792da', '#83f2ee', '#c342d0', '#50c0bd'],
   particleAmount: 30,
   defaultSpeed: 1,
   variantSpeed: 3,
-  defaultRadius: 2,
+  defaultRadius: 6,
   variantRadius: 2,
   linkRadius: 200,
 };
-const rgb = opts.lineColor.match(/\d+/g);
 
 const resizeReset = () => {
   w = canvas.value.width = window.innerWidth;
@@ -36,10 +34,13 @@ const checkDistance = (x1, y1, x2, y2) => {
 const linkPoints = (point1, hubs) => {
   for (let i = 0; i < hubs.length; i++) {
     const distance = checkDistance(point1.x, point1.y, hubs[i].x, hubs[i].y);
-    const opacity = 1 - distance / opts.linkRadius;
-    if (opacity > 0) {
+    if (distance < opts.linkRadius) {
+      const gradient = drawArea.createLinearGradient(point1.x, point1.y, hubs[i].x, hubs[i].y);
+      gradient.addColorStop(0, point1.color);
+      gradient.addColorStop(1, hubs[i].color);
+
       drawArea.lineWidth = 0.5;
-      drawArea.strokeStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
+      drawArea.strokeStyle = gradient;
       drawArea.beginPath();
       drawArea.moveTo(point1.x, point1.y);
       drawArea.lineTo(hubs[i].x, hubs[i].y);
@@ -55,7 +56,7 @@ class Particle {
     this.y = Math.random() * h;
     this.speed = opts.defaultSpeed + Math.random() * opts.variantSpeed;
     this.directionAngle = Math.floor(Math.random() * 360);
-    this.color = opts.particleColor;
+    this.color = opts.particleColors[Math.floor(Math.random() * opts.particleColors.length)];
     this.radius = opts.defaultRadius + Math.random() * opts.variantRadius;
     this.vector = {
       x: Math.cos(this.directionAngle) * this.speed,
@@ -83,10 +84,14 @@ class Particle {
   }
 
   draw() {
+    const gradient = drawArea.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+    gradient.addColorStop(0, this.color);
+    gradient.addColorStop(1, "transparent");
+
     drawArea.beginPath();
     drawArea.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     drawArea.closePath();
-    drawArea.fillStyle = this.color;
+    drawArea.fillStyle = gradient;
     drawArea.fill();
   }
 }
@@ -124,10 +129,13 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
-body
-{
-  background: #222;
+body {
+  margin: 0;
+  overflow: hidden;
+  /*background: linear-gradient(to bottom right, #f4f4f4, #fff);*/
+  background: linear-gradient(to bottom right, #333, #1a1a1a);
 }
+
 #background-animation {
   position: fixed;
   top: 0;

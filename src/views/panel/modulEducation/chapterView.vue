@@ -68,6 +68,5 @@ const modul = {
 }
 const route = useRoute()
 const chapter = route.params.chapter
-console.log(chapter)
 const dane = modul[chapter] ?? null
 </script>

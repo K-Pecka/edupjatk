@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 const props = defineProps(['buttons'])
-const { className: generalClass, style, buttons } = props.buttons
+const { className: generalClass, style, list } = props.buttons
 
 const hoveredButtonIndex = ref(null)
 
@@ -17,7 +17,7 @@ const handleMouseLeave = () => {
 
 <template>
     <div :class="generalClass?.div" :style="style?.div">
-      <transition name="bounce" appear v-for="(buttonItem, index) in buttons"
+      <transition name="bounce" appear v-for="(buttonItem, index) in list"
         :key="index">
         <router-link
         :to="buttonItem?.to"

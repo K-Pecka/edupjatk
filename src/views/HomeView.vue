@@ -8,9 +8,10 @@
 <script setup>
 import MainHeader from '@/components/stateless/PrintHeader.vue'
 import PrintListButton from '@/components/stateless/PrintListButton.vue'
-import data from '@/stores/MainPageData.js'
-const { headerMessage,buttons } = data
-
+import {useStore} from '@/stores/static/pageData/homePage.js'
+const store = useStore();
+const headerMessage=store.getMainPage().header
+const buttons=store.getMainPage().buttons
 
 
 </script>
@@ -19,7 +20,8 @@ const { headerMessage,buttons } = data
 section {
   color:#eee;
   padding:4em;
-  box-shadow: 1px 1px 5px 1px #999;
+  min-width:50%;
+  box-shadow: 1px 1px 5px 1px #131313;
   background: rgba(255, 255, 255, 0.15); 
   backdrop-filter: blur(10px); 
   border-radius: 10px;

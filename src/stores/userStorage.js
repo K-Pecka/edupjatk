@@ -31,6 +31,7 @@ export const useStore = defineStore('user', () => {
     teacher: teacherPanel
   }
   const publicPath = ['/login', '/register', '/']
+
   function findUser(email, password) {
     return users.value.find((u) => u.email === email && u.password === password)
   }
@@ -68,7 +69,6 @@ export const useStore = defineStore('user', () => {
   }
   function logOut() {
     localStorage.removeItem('activeUser')
-    console.log(getActiveUserFromLocalStorage())
   }
   function getAccessPath(path) {
     return isLoggedIn() && publicPath.includes(path)

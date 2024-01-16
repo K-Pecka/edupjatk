@@ -1,5 +1,12 @@
 <script setup>
 import ListItems from '@/stores/panelButtonData.js'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const closeOffcanvas = (path) => {
+  router.push(path)
+};
 </script>
 
 <template>
@@ -34,7 +41,7 @@ import ListItems from '@/stores/panelButtonData.js'
         <div class="offcanvas-body">
           <ul class="navbar-nav" :class="ListItems.className.div">
             <li :style="ListItems.style.button.normal" class="nav-item" v-for="item of ListItems.buttons" :key="item.label">
-              <router-link  class="nav-link" aria-current="page" :to="item.to" :class="[item.class,ListItems.className.button]">{{item.label}}</router-link>
+              <router-link @click="closeOffcanvas(item.to)" data-bs-dismiss="offcanvas" class="nav-link" aria-current="page" :to="item.to" :class="[item.class,ListItems.className.button]">{{item.label}}</router-link>
             </li>
           </ul>
         </div>
