@@ -18,23 +18,11 @@
             </div>
           </div>
         </div>
-        <div>
-          <input class="btn btn-primary" type="submit" value="Register" @click='registerMe(registerData)'>
-        </div>
       </div>
-    </div>8
+    </div>
   </template>
   
   <script setup>
-  import { useCounterStore } from '@/stores/modules/classes/main.js'
-
-  const { registerMe } = useCounterStore()
-
-  const registerData = {
-    'email': 'jd@pw.pl',
-    'password': 'aletrudnetohaslolol',
-  }
-
   const dane = [
     { title: 'Matematyka w praktyce', content: 'Rozdział poświęcony jest wykorzystaniem matematyki w praktyce', src: 'images/square.png',path:'1' },
     { title: 'Wprowadzenie do równań', content: 'W tym rozdziale wprowadzamy pojęcie równości i nierówności', src: 'images/square.png',path:'2' },
