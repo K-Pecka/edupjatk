@@ -1,9 +1,16 @@
 <script setup>
 import { useCounterStore } from '@/stores/modules/classes/main'
-import { ref, toRefs } from 'vue'
+import { computed, ref, toRefs } from 'vue'
 import { Modal } from 'usemodal-vue3'
 
+import { useRouter } from 'vue-router'
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faFontAwesomeLogoFull, faAddressBook } from '@fortawesome/free-solid-svg-icons'
+
 const { currentComponent, choosenOption, options, side_panel } = toRefs(useCounterStore())
+
+const router = useRouter()
 
 const isJoinCreateClassModalVisible = ref(false)
 
@@ -18,52 +25,81 @@ const chooseOption = (choice) => {
   }
 }
 
+const side_bar_height = computed(() => {
+  return `calc(100vh - 72px)`
+})
+
+const current_component_width = computed(() => {
+  return `calc(100vw - 111px)`
+})
+
 function enableJoinCreateClassModal() {
   isJoinCreateClassModalVisible.value = true
 }
 </script>
 
 <template>
-  <div id="page-container" class="w-100">
-    <div id="top-panel" class="col-12 row border-bottom border-gray p-0 justify-content-between">
-      <div id="logo-container" class="col-1 p-0 row h-100 justify-content-center align-content-center">
-        <img class="p-0" src="@/assets/icons/more_horiz.svg" alt="Logo" height="80" width="50" />
+  <div id="page-container" class="row" style="width: 100vw">
+    <div id="top-panel" style="position: fixed; overflow: hidden; height: 72px;" class="col-12 row border-bottom border-gray p-0 justify-content-between">
+      <div id="logo-container" class="p-0 row justify-content-center align-content-center">
+        <font-awesome-icon :icon="faFontAwesomeLogoFull" class="p-0 col-auto" style="height: 50px; position: fixed; top: 10px; width: 50px;" @click="router.back()" />
       </div>
       <nav id="settings-container" class="row col-8 justify-content-end align-self-center">
         <ul class="row justify-content-end">
           <li
-            class="col-2 row list-unstyled py-4 align-content-center top-bar-buttons"
+            class="row list-unstyled py-4 align-content-center top-bar-buttons"
             v-for="option of options"
             :key="option"
+            style="overflow: hidden;"
           >
-              <span class="row">{{ option }}</span>
+              <span class="row ">{{ option }}</span>
           </li>
         </ul>
       </nav>
     </div>
-    <div id="page-content" class="row">
-      <nav id="side-panel">
+    <div id="page-content" class="row p-0 justify-content-end">
+      <nav
+        id="side-panel"
+        style="position: fixed; left: 0; top: 72px; width: 111px;"
+        :style="{
+          height: side_bar_height
+        }"
+      >
         <ul class="row col-12 p-0 justify-content-end">
           <li
             v-for="(side_panel_option, index) of side_panel"
             :key="index"
             :style="{
-              borderLeft: side_panel_option.routing === choosenOption ? '#4567CC 3px solid' : ''
+              borderLeft: side_panel_option.routing === choosenOption ? '#5156a7 3px solid' : ''
             }"
             class="row mt-1 justify-content-center align-content-center side-bar-option"
             @click="chooseOption(side_panel_option.routing)"
           >
-            <img src="@/assets/icons/more_horiz.svg" alt="side_panel_header" height="40" />
+            <font-awesome-icon
+              :icon="side_panel_option.icon"
+              class="p-0 col-2"
+              style="height: 20px; width: 20px;"
+              :style="{
+                color: side_panel_option.routing === choosenOption ? '#5156a7' : ''
+              }"
+            />
             <span class="row justify-content-center">{{ side_panel_option.text }}</span>
           </li>
         </ul>
       </nav>
-      <div id="current-component-container">
+      <div
+        id="current-component-container"
+        class="p-0"
+        style="position: fixed; right: 0; top: 72px;"
+        :style="{
+        width: current_component_width
+        }"
+      >
         <div class="row p-3 border-bottom border-gray justify-content-between">
           <span class="row col-2 font-weight-bold align-content-center">Klasy</span>
           <div id="join-create-class-button" class="row col-2 py-1 px-3 rounded border border-gray"
                @click="enableJoinCreateClassModal">
-            <img class="row h-100 p-0 w-auto" src="@/assets/icons/more_horiz.svg" alt="menu">
+            <font-awesome-icon :icon="faAddressBook" class="row w-auto p-0" style="height: 20px; width: 20px;" />
             <span class="row align-content-center w-auto">Dołącz do klasy</span>
           </div>
         </div>
@@ -73,7 +109,7 @@ function enableJoinCreateClassModal() {
       </div>
     </div>
   </div>
-  <Modal v-model:visible="isJoinCreateClassModalVisible" class="bg-white" title="Dołącz do klasy lub stwórz swoją własną!"
+  <Modal v-model:visible="isJoinCreateClassModalVisible" :offsetTop="250" title="Dołącz do klasy lub stwórz swoją własną!"
          :okButton="{text: 'Dołącz', onclick: joinClass}" :cancelButton="{text: 'Powrót'}">
     <div>Podaj kod dostępu do klasy...</div>
     <input class="rounded border-gray text-white w-75" placeholder="Miejsce na kod">
@@ -91,11 +127,15 @@ function enableJoinCreateClassModal() {
 
 #side-panel, #logo-container {
   padding: 0;
-  width: 6%;
+  width: 110px;
 }
 
 #current-component-container {
   width: 94%
+}
+
+#logo-container {
+  cursor: pointer;
 }
 
 #join-create-class-button:hover {
@@ -103,13 +143,14 @@ function enableJoinCreateClassModal() {
 }
 
 .top-bar-buttons {
-  width: 14%;
+  width: auto;
   border-left: solid #dee2e6 2px;
   cursor: pointer;
 }
 
 .top-bar-buttons:hover {
   background: #f5f5f5;
+  color: #5156a7;
 }
 
 .row {
@@ -124,6 +165,7 @@ function enableJoinCreateClassModal() {
 
 .side-bar-option:hover {
   background: #f5f5f5;
+  color: #5156a7;
 }
 #page-container
 {

@@ -1,5 +1,5 @@
 <script setup>
-import navBar from '@/components/navBar/InitComponents.vue'
+import navBar from '@/components/navBar/initComponents.vue'
 import displayPanel from '@/components/stateless/DisplayPanel.vue'
 </script>
 

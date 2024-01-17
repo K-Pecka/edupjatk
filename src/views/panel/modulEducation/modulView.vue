@@ -6,7 +6,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-import M_realLife from '@/components/modulEducation/mathModules/M_realLife/InitComponents.vue'
+import M_realLife from '@/components/modulEducation/mathModules/M_RealLife/InitComponents.vue'
 import ErrorPage from '@/components/modulEducation/ErrorPage.vue'
 import {ref} from 'vue'
 

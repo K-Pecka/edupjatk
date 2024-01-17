@@ -3,8 +3,8 @@ const panelRoutes = [
     {
         path: '/panel',
         name: 'panel',
+        component: () => import('@/views/PanelView.vue'),
         meta: { requiresAuth: true },
-        component: () => import('@/views/panelView.vue'),
         children:[
             {path: '',name: 'start',component: () => import('@/views/panel/profileView.vue'),meta: { requiresAuth: true }},
             {path: '/profile',name: 'profile',component: () => import('@/views/panel/profileView.vue'),meta: { requiresAuth: true }},

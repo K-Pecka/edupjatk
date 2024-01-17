@@ -138,6 +138,7 @@ const resetResult = () => {
   background-image: url('@/assets/images/backgrounds/background-home.svg');
   background-size: cover;
   height: 98vh;
+  width: 98vw;
   display: flex;
   justify-content: center;
   align-items: center;
