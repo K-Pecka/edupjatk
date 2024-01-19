@@ -39,15 +39,10 @@ export const useStore = defineStore('mainPage', () => {
     buttons: {
       list: [
         {
-          label: 'Zaloguj się',
-          to: { name: 'logIn' },
+          label: 'Zaczynajmy!',
+          to: { name: 'access' },
           class: ['btn-primary'],
-        },
-        {
-          label: 'Zarejestruj się',
-          to: { name: 'SignUp' },
-          class: ['btn-secondary'],
-        },
+        }
       ],
       style: {
         button: {

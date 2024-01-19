@@ -4,10 +4,8 @@ import displayPanel from '@/components/stateless/DisplayPanel.vue'
 </script>
 
 <template>
-  <section>
     <navBar />
     <displayPanel />
-  </section>
 </template>
 <style scoped>
 section
