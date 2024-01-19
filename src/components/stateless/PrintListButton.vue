@@ -1,4 +1,7 @@
 <script setup>
+import { useCounterStore } from '@/stores/modules/classes/main.js'
+
+const {loginMe} = useCounterStore()
 import { ref } from 'vue'
 
 const props = defineProps(['buttons'])
@@ -31,9 +34,13 @@ const handleMouseLeave = () => {
       </transition>
       
     </div>
+  <div>
+    <button class="btn btn-primary" @click="loginMe" >sdfsdfsdf</button>
+  </div>
 </template>
 
 <style scoped>
+
 .animation-1 {
   transition: 1s all ease-in-out;
 }

@@ -2,7 +2,7 @@ const UserRoutes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/homeView.vue')
+    component: () => import('@/views/HomeView.vue')
   },
   {
     path: '/access',

@@ -10,6 +10,12 @@ export default defineConfig({
     vue(),
     vueJsx(),
   ],
+  server: {
+    port: 8088,
+    proxy: {
+      '/api': 'http://localhost:8008',
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
