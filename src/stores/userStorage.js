@@ -30,7 +30,7 @@ export const useStore = defineStore('user', () => {
     user: userPanel,
     teacher: teacherPanel
   }
-  const publicPath = ['/login', '/register', '/']
+  const publicPath = ['/access', '/']
 
   function findUser(email, password) {
     return users.value.find((u) => u.email === email && u.password === password)
@@ -87,5 +87,17 @@ export const useStore = defineStore('user', () => {
       ]
     )
   }
-  return { getPanel, getUser, getPermission, logOut, isLoggedIn, getAccessPath, getUserInfo }
+  function login(data)
+  {
+    return getUser(data)
+  }
+  return { 
+    getPanel, 
+    getUser, 
+    getPermission, 
+    logOut, 
+    isLoggedIn, 
+    getAccessPath, 
+    getUserInfo,
+    login }
 })

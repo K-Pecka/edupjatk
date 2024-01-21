@@ -10,8 +10,9 @@ import MainHeader from '@/components/stateless/PrintHeader.vue'
 import PrintListButton from '@/components/stateless/PrintListButton.vue'
 import {useStore} from '@/stores/static/pageData/homePage.js'
 const store = useStore();
-const headerMessage=store.getMainPage().header
-const buttons=store.getMainPage().buttons
+const data = store.getMainPage();
+const headerMessage=data.header
+const buttons=data.buttons
 
 
 </script>

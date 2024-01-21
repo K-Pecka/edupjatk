@@ -53,7 +53,7 @@ export const useCounterStore = defineStore('counter', () => {
 
     async function registerMe(data) {
         try {
-            const response = await fetch('http://localhost:8008/api/v1/accounts/kid/create/', {
+            const response = await fetch('http://localhost:8008/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,22 +75,21 @@ export const useCounterStore = defineStore('counter', () => {
             console.error('Error:', error)
         }
     }
-        function getCookie(name) {
+        /*function getCookie(name) {
         var value = "; " + document.cookie;
         var parts = value.split("; " + name + "=");
         if (parts.length == 2) return parts.pop().split(";").shift();
-    }
+    }*/
         async function loginMe() {
         try {
             const data = {
-                email: 'jd@pw.pl',
-                password: 'aletrudnetohaslolol',
+                username: 'janK',
+                password: '123123',
             }
-            const response = await fetch('http://localhost:8008/api/v1/accounts/kid/login/', {
+            const response = await fetch('https://edupjatk-backend-756c2008b530.herokuapp.com/api/v1/accounts/login/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     email: data.email,
