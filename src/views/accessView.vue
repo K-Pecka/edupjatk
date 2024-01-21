@@ -1,11 +1,11 @@
 <script setup>
-import FormTemp from '@/components/stateless/FormTemp.vue'
+import FormTemplate from '@/components/access/InitComponent.vue'
 </script>
 
 <template>
   <section>
     <div class="topLayer">
-      <FormTemp/>
+      <FormTemplate/>
     </div>
   </section>
 </template>

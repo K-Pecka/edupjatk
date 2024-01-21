@@ -43,12 +43,14 @@ export const useStore = defineStore('user', () => {
   function getUser({ email, password }) {
     console.log(email, password)
     const foundUser = findUser(email, password)
-    if (foundUser) {
-      storeUserToLocalStorage(foundUser)
-      return { status: true, message: 'Logowanie powiodło się', time: 2000 }
-    } else {
-      return { status: false, message: 'Logowanie nie powiodło się' }
-    }
+    return new Promise((resolve, reject) => {
+      if (foundUser) {
+        storeUserToLocalStorage(foundUser);
+        resolve({ status: true, message: 'Logowanie powiodło się', time: 2000 });
+      } else {
+        reject({ status: false, message: 'Logowanie nie powiodło się' });
+      }
+    });
   }
 
   function getActiveUserFromLocalStorage() {
@@ -87,9 +89,42 @@ export const useStore = defineStore('user', () => {
       ]
     )
   }
-  function login(data)
+  async function login(data)
   {
-    return getUser(data)
+    return new Promise((resolve, reject) => {
+      getUser(data)
+        .then(response => resolve(response))
+        .catch(error => {
+          console.error(error);
+          reject(error);
+        });
+    });
+    /*try {
+      const response = await fetch('https://edupjatk-backend-756c2008b530.herokuapp.com/api/v1/accounts/login/', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              email: data.email,
+              password: data.password,
+          }),
+          credentials: 'include',
+      })
+      if (response.ok) {
+          const responseData = await response
+          console.log('Response:', responseData)
+      } else {
+          const errorData = await response
+          console.error('Error:', errorData)
+      }
+  } catch (error) {
+      console.error('Error:', error)
+  }*/
+  }
+  function register(data)
+  {
+    return 'pomidor'+data
   }
   return { 
     getPanel, 
@@ -99,5 +134,6 @@ export const useStore = defineStore('user', () => {
     isLoggedIn, 
     getAccessPath, 
     getUserInfo,
-    login }
+    login,
+    register }
 })

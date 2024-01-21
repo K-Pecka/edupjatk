@@ -1,10 +1,12 @@
 <template>
   <RouterView />
   <BackgroundAnimation />
+  <CookieBanner />
 </template>
 
 <script setup>
 import BackgroundAnimation from "@/components/static/BackgroundAnimation.vue";
+import CookieBanner from "@/components/static/CookieBanner.vue";
 </script>
 
 <style>

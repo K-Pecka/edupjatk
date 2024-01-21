@@ -1,24 +1,27 @@
 <script setup>
 import { accessHTMLstore } from '@/stores/static/pageData/accessHTML.js'
 import {useStore} from '@/stores/userStorage.js'
+
+const {login,register} = useStore()
 const store = accessHTMLstore()
-const {login} = useStore()
+
 const accessTypePanel = store.getState()
 
-const changeState = () => {
-  store.changeState()
-}
-const sendForm = () => {
+const changeState = () => store.changeState()
+const sendForm = async () => {
   
-  const {fields}=accessTypePanel.value
-  console.log(accessTypePanel);
+  const {fields,state}=accessTypePanel.value
+
   const formData = fields.reduce((data, field) => {
     data[field.name] = field.value
     return data
   }, {})
-  console.log(formData)
-  const mess = login(formData)
-  console.log(mess)
+  try {
+    state == 'logIn' ? await login(formData) : await register(formData);
+  } catch (error) {
+    console.error('Error during login or registration:', error);
+    // You can handle the error in a way that makes sense for your application
+  }
 }
 </script>
 
@@ -36,7 +39,7 @@ const sendForm = () => {
           <button id="signUp" class="signup" type="submit" name="signup">
             {{ accessTypePanel.btn?.main.title }}
           </button>
-          <button class="signup off" @click="changeState">
+          <button class="signup off" type="button" @click="changeState">
             {{ accessTypePanel.btn?.second.title }}
           </button>
         </div>

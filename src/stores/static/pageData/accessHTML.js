@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import LogInForm from '@/components/access/logIn/logInForm.vue'
+import LogInForm from '@/components/access/logIn/LogInForm.vue'
 import SignUpForm from '@/components/access/signUp/SignUpForm.vue'
 
 export const accessHTMLstore = defineStore('accessFormData', () => {
@@ -9,19 +9,19 @@ export const accessHTMLstore = defineStore('accessFormData', () => {
       component: LogInForm,
       state: 'logIn',
       classPanelPage: 'logIn',
-      title: 'Log In',
+      title: 'Zaloguj się',
       btn: {
-        main: { title: 'Log In' },
-        second: { title: 'Sign Up' }
+        main: { title: 'Zaloguj się' },
+        second: { title: 'Zarejestruj się' }
       },
       fields: [
         {
-          label: 'login',
+          label: 'Login',
           name: 'email',
           type: 'text'
         },
         {
-          label: 'password',
+          label: 'Hasło',
           name: 'password',
           type: 'password'
         }
@@ -31,24 +31,24 @@ export const accessHTMLstore = defineStore('accessFormData', () => {
       state: 'signUp',
       component: SignUpForm,
       classPanelPage: 'signUp',
-      title: 'Sign Up',
+      title: 'Zarejestruj się',
       btn: {
-        main: { title: 'Sign Up' },
-        second: { title: 'Log In' }
+        main: { title: 'zarejestruj się' },
+        second: { title: 'Zaloguj się' }
       },
       fields: [
         {
-          label: 'name',
+          label: 'Imie',
           name: 'name',
           type: 'text'
         },
         {
-          label: 'surname',
+          label: 'Nazwisko',
           name: 'surname',
           type: 'text'
         },
         {
-          label: 'login',
+          label: 'Login',
           name: 'login',
           type: 'text'
         },
@@ -58,7 +58,7 @@ export const accessHTMLstore = defineStore('accessFormData', () => {
           type: 'email'
         },
         {
-          label: 'type',
+          label: 'Typ konta',
           name: 'type',
           type: 'checkbox'
         }
