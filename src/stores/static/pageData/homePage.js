@@ -1,8 +1,17 @@
 import { defineStore } from 'pinia';
+import {markRaw} from 'vue'
+
+import MainHeader from '@/components/stateless/PrintHeader.vue'
+import PrintListButton from '@/components/stateless/PrintListButton.vue'
 
 export const useStore = defineStore('mainPage', () => {
   const mainPage = {
+    component:{
+      header:markRaw(MainHeader),
+      buttonsList:markRaw(PrintListButton)
+    },
     header: {
+      
       title: 'Odkryjmy razem <strong>Magię Edukacji</strong>!',
       content: [
         'Witaj na naszej platformie edukacyjnej, gdzie nauka staje się pasją, a przestrzeń edukacyjna to miejsce inspirujących odkryć. Oferujemy fascynującą podróż w świat wiedzy, otwierając <span>drzwi do nowych możliwości</span>. Nasz rozwinięty system nauki online integruje skuteczność i dostępność, umożliwiając fascynującą podróż odkrywania nowego świata.',
@@ -66,7 +75,17 @@ export const useStore = defineStore('mainPage', () => {
   };
   
   function getMainPage() {
-    return mainPage;
+    return {
+      header:{
+        component:mainPage.component.header,
+        props:mainPage.header
+      },
+      buttonsList:{
+        component:mainPage.component.buttonsList,
+        props:mainPage.buttons
+      }
+
+    }
   }
 
   return { getMainPage };

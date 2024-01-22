@@ -14,7 +14,7 @@ let w, h;
 
 const opts = {
   particleColors: ['#8792da', '#83f2ee', '#c342d0', '#50c0bd'],
-  particleAmount: 30,
+  particleAmount: 0,
   defaultSpeed: 1,
   variantSpeed: 3,
   defaultRadius: 6,
@@ -131,15 +131,7 @@ onBeforeUnmount(() => {
 <style>
 body {
   margin: 0;
-  overflow: hidden;
   /*background: linear-gradient(to bottom right, #f4f4f4, #fff);*/
   background: linear-gradient(to bottom right, #333, #1a1a1a);
-}
-
-#background-animation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
 }
 </style>

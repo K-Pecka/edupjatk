@@ -8,7 +8,6 @@
             <div class="row g-4">
               <div :class="['col-md-8', 'order-md-first', 'order-lg-last']">
                 <div class="card-body">
-                  <!-- Dodaj link do tytułu -->
                   <h5 class="card-title">
                     <router-link :to="`/education/${chapter}/${item.path}`">{{
                       item.title.toLocaleUpperCase()

@@ -3,7 +3,5 @@ import modulEducation from '@/components/modulEducation/InitComponents.vue'
 </script>
 
 <template>
-    <section>
-        <modulEducation />
-    </section>
+    <modulEducation />
 </template>

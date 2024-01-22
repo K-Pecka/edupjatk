@@ -3,9 +3,5 @@
 </script>
 
 <template>
-  <router-view class="panel"></router-view>
+  <router-view></router-view>
 </template>
-
-<style>
-
-</style>

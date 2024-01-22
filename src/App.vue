@@ -1,20 +1,17 @@
-<template>
-  <RouterView />
-  <BackgroundAnimation />
-  <CookieBanner />
-</template>
-
 <script setup>
 import BackgroundAnimation from "@/components/static/BackgroundAnimation.vue";
 import CookieBanner from "@/components/static/CookieBanner.vue";
+import { bannerStorage } from '@/stores/static/pageData/banner.js'
+const { showCookieBanner} = bannerStorage().cookies;
 </script>
 
-<style>
+<template>
+  <RouterView />
+  <BackgroundAnimation id="background-animation"/>
+  <CookieBanner v-if="showCookieBanner"/>
+</template>
 
-body {
-  margin: 0;
-}
-
+<style scoped>
 #background-animation {
   position: fixed;
   top: 0;

@@ -1,27 +1,23 @@
 <script setup>
-import { useStore } from '@/stores/userStorage.js'
-import { useRouter } from 'vue-router';
+import { useStore } from '@/stores/userStorage.js';
+import { bannerStorage } from '@/stores/static/pageData/banner.js';
+import router from '@/router/index.js'
+import { onMounted } from 'vue';
 
-const router = useRouter();
-const store = useStore();
+const {logOut} = useStore();
+const { property } = bannerStorage().logOut;
+const {goTo, paths} = router
 
-const handleAnimationEnd = () => setTimeout(() =>router.push('/'),2500);
-
-(async () => {
-    store.logOut();
-    handleAnimationEnd();
-})();
-const lang = {
-    'en':'GoodBye',
-    'es':'Adios'
-}
-const goodbye = lang['es'] ?? 'GoodBye'
+onMounted(async () => {
+  logOut();
+  setTimeout(() => goTo(paths.home), property.delay);
+});
 </script>
 
 <template>
     <div class="goodbye-container">
-        <div class="goodbye-message" @animationend="handleAnimationEnd">
-            <p>{{goodbye}}!<span class="emoji">👋</span></p>
+        <div class="goodbye-message">
+            <p>{{property.title}}!<span class="emoji">👋</span></p>
         </div>
     </div>
 </template>

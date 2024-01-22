@@ -1,9 +1,8 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import userPanel from '@/components/panel/user/initComponents.vue'
-import teacherPanel from '@/components/panel/teacher/initComponents.vue'
+import userPanel from '@/components/panel/user/InitComponents.vue'
+import teacherPanel from '@/components/panel/teacher/InitComponents.vue'
 import router from '@/router/index.js'
-
 
 export const useStore = defineStore('user', () => {
   const users = ref([
@@ -32,11 +31,6 @@ export const useStore = defineStore('user', () => {
     user: userPanel,
     teacher: teacherPanel
   }
-  const publicPath = ['/access', '/']
-  const paths = {
-    home: '/',
-    panel: '/panel'
-  };
   function findUser(email, password) {
     return users.value.find((u) => u.email === email && u.password === password)
   }
@@ -78,7 +72,7 @@ export const useStore = defineStore('user', () => {
     localStorage.removeItem('activeUser')
   }
   function getAccessPath(path) {
-    return isLoggedIn() && publicPath.includes(path)
+    return isLoggedIn() && router.publicPath.includes(path)
   }
   function getUserInfo() {
     const { surname, userName, nickName, email } = getActiveUserFromLocalStorage()
@@ -101,11 +95,11 @@ export const useStore = defineStore('user', () => {
         .then(response => {
           console.log(response);
           if(response.status){
-            if (goTo(paths.panel)) {
-            router.push(paths.panel)
+            
+            router.goTo(router.paths.panel)
           }
           resolve(response);
-        }})
+        })
         .catch(error => {
           console.error(error);
           reject(error);
@@ -146,9 +140,6 @@ export const useStore = defineStore('user', () => {
       console.error('Error during login or registration:', error);
     }
   }
-  function goTo(targetPath) {
-    return Object.values(paths).includes(targetPath);
-  }
   return { 
     getPanel, 
     getUser, 
@@ -157,5 +148,5 @@ export const useStore = defineStore('user', () => {
     isLoggedIn, 
     getAccessPath, 
     getUserInfo,
-    sendData,paths,goTo }
+    sendData }
 })

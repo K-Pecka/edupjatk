@@ -4,6 +4,6 @@
 
 <template>
     <div>
-        statistic
+        wkresy inne pierdoły
     </div>
 </template>

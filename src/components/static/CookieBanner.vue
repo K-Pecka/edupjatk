@@ -1,14 +1,14 @@
 <script setup>
-import { userStorage } from '@/stores/static/pageData/banner.js'
+import { bannerStorage } from '@/stores/static/pageData/banner.js'
 import {toRefs} from 'vue'
-const { cookies, acceptCookies, showCookieBanner } = toRefs(userStorage())
+const { cookiesProperty, showCookieBanner, acceptCookies } = toRefs(bannerStorage().cookies);
 </script>
 
 <template>
   <div :class="{ 'hide': !showCookieBanner }">
     <p>
-      {{ cookies.content }}
-      <button @click="acceptCookies">{{ cookies.button.title }}</button>
+      {{ cookiesProperty.content }}
+      <button @click="acceptCookies">{{ cookiesProperty.button.title }}</button>
     </p>
   </div>
 </template>

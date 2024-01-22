@@ -1,10 +1,10 @@
 <template>
     <div>
-      <div>
+      <div class="container">
         <div class="row justify-content-center">
-          <div v-for="(item, index) in dane" :key="index" class="card mb-3 col-md-6 col-lg-4 p-4">
-            <div class="row g-4">
-              <div :class="['col-md-8', 'order-md-first', 'order-lg-last']">
+          <div v-for="(item, index) in dane" :key="index" class="card  m-3 col-sm-12 col-lg-5 col-xl-4 p-4">
+            <div class="row g-4 w-100">
+              <div :class="['col-md-6', 'order-md-first', 'order-lg-last']">
                 <div class="card-body">
                   <h5 class="card-title">
                     <router-link :to="`/education/${item.path}`">{{ item.title.toLocaleUpperCase() }}</router-link>
@@ -12,7 +12,7 @@
                   <p class="card-text">{{ item.content }}</p>
                 </div>
               </div>
-              <div :class="['col-md-4', 'order-md-last', 'order-lg-first']">
+              <div :class="['col-md-6', 'order-md-last', 'order-lg-first','d-none', 'd-md-block']">
                 <img :src="`/src/assets/${item.src}`" alt="Grafika" class="card-img img-fluid" />
               </div>
             </div>
@@ -31,8 +31,18 @@
   </script>
   
   <style scoped>
+  .container
+  {
+    width:100vw;
+    display: flex;
+    justify-content: center;
+    margin-top:10vh;
+  }
+  .row
+  {
+    width:100%;
+  }
   .card {
-    margin: 10px;
     transition: transform 0.3s ease; 
   }
   .card:hover {

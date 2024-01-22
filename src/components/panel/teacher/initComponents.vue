@@ -4,20 +4,19 @@ import displayPanel from '@/components/stateless/DisplayPanel.vue'
 </script>
 
 <template>
+  <section>
     <navBar />
-    <displayPanel />
+    <displayPanel/>
+  </section>
 </template>
 <style scoped>
 section
 {
-  height: 100vh;
-  width: 100vw;
-}
-.panel
-{
-  width: 96%;
+  width: 96vw;
   min-height: 85vh;
-  transform: translate(2vw, 10vh);
-  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 </style>

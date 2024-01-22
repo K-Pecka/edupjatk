@@ -12,19 +12,28 @@ const router = createRouter({
   routes
 })
 
-const panelGuard = (to, from, next, store) => {
-  if (!store.isLoggedIn()) {
+router.publicPath = ['/access', '/']
+router.paths = {
+    home: '/',
+    panel: '/panel'
+};
+
+router.goTo= (targetPath) => {
+  router.push(targetPath);
+}
+const panelGuard = (to, from, next, isLoggedIn) => {
+  if (!isLoggedIn()) {
     next('/access')
   } else {
     next()
   }
 }
 router.beforeEach((to, from, next) => {
-  const store = useStore()
+  const {getAccessPath,isLoggedIn} = useStore()
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    panelGuard(to, from, next,store)
+    panelGuard(to, from, next,isLoggedIn)
   } else {
-    if (store.getAccessPath(to.path)) {
+    if (getAccessPath(to.path)) {
       next('/panel')
     } else {
       next()

@@ -1,11 +1,9 @@
 <script setup>
 import ListItems from '@/stores/panelButtonData.js'
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
+import router from '@/router/index.js'
+const {goTo} = router
 const closeOffcanvas = (path) => {
-  router.push(path)
+  goTo(path)
 };
 </script>
 

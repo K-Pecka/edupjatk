@@ -1,19 +1,13 @@
 <template>
   <section class="container page">
-    <MainHeader :message="headerMessage" />
-    <PrintListButton :buttons="buttons" />
+    <component  :is="header.component" :message="header.props" />
+    <component  :is="buttonsList.component" :buttons="buttonsList.props" />
   </section>
 </template>
 
 <script setup>
-import MainHeader from '@/components/stateless/PrintHeader.vue'
-import PrintListButton from '@/components/stateless/PrintListButton.vue'
 import {useStore} from '@/stores/static/pageData/homePage.js'
-const store = useStore();
-const data = store.getMainPage();
-const headerMessage=data.header
-const buttons=data.buttons
-
+const {header,buttonsList} = useStore().getMainPage();
 
 </script>
 
