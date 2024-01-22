@@ -1,27 +1,21 @@
 <script setup>
 import { accessHTMLstore } from '@/stores/static/pageData/accessHTML.js'
-import {useStore} from '@/stores/userStorage.js'
+import { useStore } from '@/stores/userStorage.js'
 
-const {login,register} = useStore()
+const { sendData } = useStore()
 const store = accessHTMLstore()
 
 const accessTypePanel = store.getState()
 
 const changeState = () => store.changeState()
 const sendForm = async () => {
-  
-  const {fields,state}=accessTypePanel.value
+  const { fields, state } = accessTypePanel.value
 
   const formData = fields.reduce((data, field) => {
     data[field.name] = field.value
     return data
   }, {})
-  try {
-    state == 'logIn' ? await login(formData) : await register(formData);
-  } catch (error) {
-    console.error('Error during login or registration:', error);
-    // You can handle the error in a way that makes sense for your application
-  }
+  sendData(formData, state)
 }
 </script>
 
@@ -30,11 +24,11 @@ const sendForm = async () => {
     <div class="content">
       <h2>{{ accessTypePanel.title }}</h2>
       <form @submit.prevent="sendForm">
-          <component
-            :is="accessTypePanel.component"
-            :fields="accessTypePanel.fields"
-            :key="accessTypePanel.state"
-          />
+        <component
+          :is="accessTypePanel.component"
+          :fields="accessTypePanel.fields"
+          :key="accessTypePanel.state"
+        />
         <div class="form-element form-submit">
           <button id="signUp" class="signup" type="submit" name="signup">
             {{ accessTypePanel.btn?.main.title }}
@@ -48,12 +42,6 @@ const sendForm = async () => {
   </div>
 </template>
 <style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
 label {
   font-size: 0.8em;
   text-transform: uppercase;

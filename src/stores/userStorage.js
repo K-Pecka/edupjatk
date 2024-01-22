@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import userPanel from '@/components/panel/user/initComponents.vue'
 import teacherPanel from '@/components/panel/teacher/initComponents.vue'
+import router from '@/router/index.js'
+
 
 export const useStore = defineStore('user', () => {
   const users = ref([
@@ -31,7 +33,10 @@ export const useStore = defineStore('user', () => {
     teacher: teacherPanel
   }
   const publicPath = ['/access', '/']
-
+  const paths = {
+    home: '/',
+    panel: '/panel'
+  };
   function findUser(email, password) {
     return users.value.find((u) => u.email === email && u.password === password)
   }
@@ -93,7 +98,14 @@ export const useStore = defineStore('user', () => {
   {
     return new Promise((resolve, reject) => {
       getUser(data)
-        .then(response => resolve(response))
+        .then(response => {
+          console.log(response);
+          if(response.status){
+            if (goTo(paths.panel)) {
+            router.push(paths.panel)
+          }
+          resolve(response);
+        }})
         .catch(error => {
           console.error(error);
           reject(error);
@@ -126,6 +138,17 @@ export const useStore = defineStore('user', () => {
   {
     return 'pomidor'+data
   }
+  async function sendData(formData,state)
+  {
+    try {
+      return state == 'logIn' ? await login(formData) : await register(formData);
+    } catch (error) {
+      console.error('Error during login or registration:', error);
+    }
+  }
+  function goTo(targetPath) {
+    return Object.values(paths).includes(targetPath);
+  }
   return { 
     getPanel, 
     getUser, 
@@ -134,6 +157,5 @@ export const useStore = defineStore('user', () => {
     isLoggedIn, 
     getAccessPath, 
     getUserInfo,
-    login,
-    register }
+    sendData,paths,goTo }
 })

@@ -14,7 +14,7 @@ const router = createRouter({
 
 const panelGuard = (to, from, next, store) => {
   if (!store.isLoggedIn()) {
-    next('/login')
+    next('/access')
   } else {
     next()
   }

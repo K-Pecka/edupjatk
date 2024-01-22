@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref,markRaw } from 'vue'
 import LogInForm from '@/components/access/logIn/LogInForm.vue'
 import SignUpForm from '@/components/access/signUp/SignUpForm.vue'
 
 export const accessHTMLstore = defineStore('accessFormData', () => {
   const defaultState = {
     logIn: {
-      component: LogInForm,
+      component: markRaw(LogInForm),
       state: 'logIn',
       classPanelPage: 'logIn',
       title: 'Zaloguj się',
@@ -29,7 +29,7 @@ export const accessHTMLstore = defineStore('accessFormData', () => {
     },
     signUp: {
       state: 'signUp',
-      component: SignUpForm,
+      component: markRaw(SignUpForm),
       classPanelPage: 'signUp',
       title: 'Zarejestruj się',
       btn: {
