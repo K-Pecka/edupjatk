@@ -2,13 +2,10 @@
   <div class="container">
     <div class="row">
     <div class="col-8 quest">
-      Ala umówiła się z Zosią o {{ formattedTime }} na grę w klasy, czy pomożesz Ali ustawić zegar na tą godzinę? 
-      <div class="hint">
-        <h2>Podpowiedź:</h2>
-        Kolorem <span class="current-time-indicator" :style="{ backgroundColor: backgroundHighlightedNumber }"></span> oznaczono aktualną godzinę jaką pokazuje zegar
-      </div>
+      <Quest :time='formattedTime'/> 
+      <Hint :bgcolor='backgroundHighlightedNumber'/>
     </div>
-    <div class="col-4 clock">
+    <div class="col-4 clock"> 
       <canvas
       ref="clockCanvas"
       width="400"
@@ -44,19 +41,6 @@
   display:flex;
   flex-direction: column;
 }
-.quest
-{
-  font-size:1.5em;
-}
-.current-time-indicator {
-  min-width: 2em;
-  min-height: 2em;
-  border-radius: 10%;
-  margin-top: 0.5em;
-  border: 2px solid #333;
-  display: inline-block;
-  transform: translateY(.5em);
-}
 .container{
   background-color: #444;
 }
@@ -82,6 +66,8 @@
 }
 </style>
 <script setup>
+import Hint from './HintModule.vue'
+import Quest from './QuestModule.vue'
 import { ref, onMounted, computed } from 'vue'
 const clockCanvas = ref(null)
 let ctx

@@ -17,7 +17,7 @@ export const accessHTMLstore = defineStore('accessFormData', () => {
       fields: [
         {
           label: 'Login',
-          name: 'email',
+          name: 'username',
           type: 'text'
         },
         {

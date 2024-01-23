@@ -1,8 +1,13 @@
 <script setup>
+import BannerInfo from "@/components/stateless/BannerInfo.vue";
 import { accessHTMLstore } from '@/stores/static/pageData/accessHTML.js'
-import { useStore } from '@/stores/userStorage.js'
+import { useUserStore } from '@/stores/user/main.js'
+import { useBannerStore } from '@/stores/banner/main.js';
+import {ref} from 'vue'
 
-const { sendData } = useStore()
+const {showBanner} = useBannerStore()
+const isVisible = ref(false);
+const { sendData } = useUserStore()
 const store = accessHTMLstore()
 
 const accessTypePanel = store.getState()
@@ -16,10 +21,14 @@ const sendForm = async () => {
     return data
   }, {})
   sendData(formData, state)
+  .then(()=>showBanner())
+  .then(()=>isVisible.value=true)
+ 
 }
 </script>
 
 <template>
+  <BannerInfo v-if="isVisible" />
   <div :class="accessTypePanel.classPanelPage">
     <div class="content">
       <h2>{{ accessTypePanel.title }}</h2>

@@ -4,7 +4,7 @@ import userPanel from '@/components/panel/user/InitComponents.vue'
 import teacherPanel from '@/components/panel/teacher/InitComponents.vue'
 import router from '@/router/index.js'
 
-export const useStore = defineStore('user', () => {
+export const useStore = defineStore('userq', () => {
   const users = ref([
     {
       uuid: 1,
