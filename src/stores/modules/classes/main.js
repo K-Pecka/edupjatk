@@ -83,7 +83,7 @@ export const useCounterStore = defineStore('counter', () => {
         async function loginMe() {
         try {
             const data = {
-                username: 'janK',
+                username: 'admin',
                 password: '123123',
             }
             const response = await fetch('https://edupjatk-backend-756c2008b530.herokuapp.com/api/v1/accounts/login/', {
@@ -92,7 +92,7 @@ export const useCounterStore = defineStore('counter', () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email: data.email,
+                    username: data.username,
                     password: data.password,
                 }),
                 credentials: 'include',

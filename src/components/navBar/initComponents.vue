@@ -1,7 +1,12 @@
 <script setup>
 import ListItems from '@/stores/panelButtonData.js'
 import router from '@/router/index.js'
+import { useCounterStore } from '@/stores/modules/classes/main.js'
+
+const { loginMe } = useCounterStore()
+
 const {goTo} = router
+
 const closeOffcanvas = (path) => {
   goTo(path)
 };
@@ -10,6 +15,9 @@ const closeOffcanvas = (path) => {
 <template>
   <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
     <div class="container-fluid">
+      <button @click="loginMe">
+        dsfsdfsdfsd
+      </button>
       <button
         class="navbar-toggler"
         type="button"
