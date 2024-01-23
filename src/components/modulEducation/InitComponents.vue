@@ -1,39 +1,18 @@
 <template>
-    <div>
-      <div class="container">
-        <div class="row justify-content-center">
-          <div v-for="(item, index) in dane" :key="index" class="card  m-3 col-sm-12 col-lg-5 col-xl-4 p-4">
-            <div class="row g-4 w-100">
-              <div :class="['col-md-6', 'order-md-first', 'order-lg-last']">
-                <div class="card-body">
-                  <h5 class="card-title">
-                    <router-link :to="`/education/${item.path}`">{{ item.title.toLocaleUpperCase() }}</router-link>
-                  </h5>
-                  <p class="card-text">{{ item.content }}</p>
-                </div>
-              </div>
-              <div :class="['col-md-6', 'order-md-last', 'order-lg-first','d-none', 'd-md-block']">
-                <img :src="`/src/assets/${item.src}`" alt="Grafika" class="card-img img-fluid" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <DisplayCard :data="modul"/>
   </template>
   
   <script setup>
-  const dane = [
-    { title: 'Matematyka w praktyce', content: 'Rozdział poświęcony jest wykorzystaniem matematyki w praktyce', src: 'images/square.png',path:'1' },
-    { title: 'Wprowadzenie do równań', content: 'W tym rozdziale wprowadzamy pojęcie równości i nierówności', src: 'images/square.png',path:'2' },
-    { title: 'Pojęcie niewiadomej', content: 'Rozdział poświęcony jest wprowadzeniu niewiadomych do równania', src: 'images/square.png',path:'3' }
-  ];
+  import {moduleStorage} from '@/stores/modulEducation/modulStorage.js'
+  import DisplayCard from '@/components/stateless/DisplayCard.vue'
+
+  const modul = moduleStorage().getModul()
   </script>
   
   <style scoped>
   .container
   {
-    width:100vw;
+    width:95vw;
     display: flex;
     justify-content: center;
     margin-top:10vh;
