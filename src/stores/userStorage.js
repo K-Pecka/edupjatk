@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import userPanel from '@/components/panel/user/InitComponents.vue'
-import teacherPanel from '@/components/panel/teacher/InitComponents.vue'
+import userPanel from '@/components/panel/user/initComponents.vue'
+import teacherPanel from '@/components/panel/teacher/initComponents.vue'
 import router from '@/router/index.js'
 
 export const useStore = defineStore('userq', () => {

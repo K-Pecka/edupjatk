@@ -80,20 +80,16 @@ export const useCounterStore = defineStore('counter', () => {
         var parts = value.split("; " + name + "=");
         if (parts.length == 2) return parts.pop().split(";").shift();
     }*/
-        async function loginMe() {
+        async function loginMe(username, password) {
         try {
-            const data = {
-                username: 'janK',
-                password: '123123',
-            }
             const response = await fetch('https://edupjatk-backend-756c2008b530.herokuapp.com/api/v1/accounts/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email: data.email,
-                    password: data.password,
+                    username: username,
+                    password: password,
                 }),
                 credentials: 'include',
             })
