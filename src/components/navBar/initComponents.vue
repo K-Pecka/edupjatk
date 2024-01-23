@@ -15,7 +15,7 @@ const closeOffcanvas = (path) => {
 <template>
   <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
     <div class="container-fluid">
-      <button @click="loginMe">
+      <button @click="loginMe('admin', '123123')">
         dsfsdfsdfsd
       </button>
       <button
