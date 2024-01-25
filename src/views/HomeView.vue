@@ -23,4 +23,4 @@ section {
   padding: 20px;
   text-align: center;
 }
-</style>
+</style>@/stores/static/homePage/homePage.js

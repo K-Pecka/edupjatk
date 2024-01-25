@@ -1,9 +1,9 @@
 <script setup>
-import { useStore } from '@/stores/userStorage.js';
-import { functionStore } from '@/stores/static/function/function.js'
+import { useUserStore } from '@/stores/user/main.js';
+import { usefunctionStore } from '@/stores/function/main.js'
 import {ref} from 'vue'
-  const { capitalizeText } = functionStore()
-  const store = useStore();
+  const { capitalizeText } = usefunctionStore()
+  const store = useUserStore();
   const user = store.getUserInfo();
 
   const showModal = ref(false);
@@ -86,4 +86,4 @@ const hideModal = () => {
     color: #28a745;
   }
   </style>
-  
+  @/stores/function/function.js

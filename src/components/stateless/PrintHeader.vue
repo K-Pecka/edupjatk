@@ -2,8 +2,7 @@
 import { onMounted } from 'vue'
 import anime from 'animejs'
 
-const props = defineProps(['message'])
-const { title, content, style, class: className, animation } = props.message
+const { title, content, style, class: className, animation } = defineProps(['message']).message
 
 const setAnimationParagraf = () => {
   content.forEach((_, index) => {

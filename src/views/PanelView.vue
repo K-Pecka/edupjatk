@@ -1,7 +1,7 @@
 <script setup>
 
-import { useStore } from '@/stores/userStorage.js'
-const store = useStore()
+import { useUserStore } from '@/stores/user/main.js'
+const store = useUserStore()
 const Panel = store.getPanel()
 </script>
 

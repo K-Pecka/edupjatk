@@ -42,7 +42,7 @@ const sendForm = async () => {
     </div>
   </div>
 </template>
-<style>
+<style scoped>
 label {
   font-size: 0.8em;
   text-transform: uppercase;
@@ -56,54 +56,6 @@ input {
   padding: 8px 1px;
   margin-top: 0.1em;
 }
-
-.logIn {
-  width: 50%;
-  height: 100%;
-  background: #2c3034;
-  left: 0;
-  position: absolute;
-}
-
-.logIn label {
-  color: #e3e3e3;
-}
-
-.logIn input {
-  border-bottom: 1px solid #e3e3e3;
-  color: #e3e3e3;
-}
-
-.logIn input:focus,
-.logIn input:active {
-  border-color: #03a9f4;
-  color: #03a9f4;
-}
-
-.logIn a {
-  color: #03a9f4;
-}
-
-.signUp {
-  width: 50%;
-  height: 100%;
-  background: #f9f9f9;
-  position: absolute;
-}
-
-.signUp label {
-  color: #212121;
-}
-
-.signUp input {
-  border-bottom: 1px solid #212121;
-}
-
-.signUp input:focus,
-.signUp input:active {
-  border-color: #673ab7;
-}
-
 .content {
   display: flex;
   flex-direction: column;
@@ -120,18 +72,13 @@ input {
   margin: 0.2em 0 0.1em;
   color: #03a9f4;
 }
-.form-element {
-  margin: 1.6em 0;
-}
+
 
 .form-element.form-submit {
   margin: 1.6em 0 0;
 }
 
-.form-stack {
-  display: flex;
-  flex-direction: column;
-}
+
 
 button {
   padding: 0.8em 1.2em;
@@ -170,9 +117,6 @@ button.off.signup {
   color: #03a9f4;
 }
 
-button.off.login {
-  color: #673ab7;
-}
 
 button:focus,
 button:active,
@@ -188,11 +132,6 @@ button.signup:hover {
   background: #0288d1;
 }
 
-button.login:focus,
-button.login:active,
-button.login:hover {
-  background: #512da8;
-}
 
 button.off:focus,
 button.off:active,
@@ -207,10 +146,4 @@ button.off.signup:hover {
   background: #212121;
 }
 
-button.off.login:focus,
-button.off.login:active,
-button.off.login:hover {
-  color: #512da8;
-  background: #e3e3e3;
-}
 </style>

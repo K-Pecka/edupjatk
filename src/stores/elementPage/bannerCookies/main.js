@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const bannerStorage = defineStore('banner', () => {
+export const useBannerCookiesStore = defineStore('bannerCookies', () => {
   const cookies = {
     cookiesProperty: {
       content: 'Ta strona używa plików cookie, aby zapewnić najlepsze doświadczenia.',

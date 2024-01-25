@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-export const moduleStorage = defineStore('modulEducation', () => {
+export const useModuleStore = defineStore('modulEducation', () => {
     const existModuls = ref({
         math: {
             path: 'math/',

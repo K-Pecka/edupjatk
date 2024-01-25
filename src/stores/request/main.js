@@ -1,30 +1,32 @@
 import { defineStore } from 'pinia';
 import { backendHost, backendPaths } from '@/endpoint.config.js';
-import { useBannerStore } from '@/stores/banner/main.js';
 
-const bannerStore = useBannerStore();
+function setPropsRequest(request)
+{
+    let {method, headers, body, credentials} = request
+    return {
+        method: method ?? 'GET',
+        headers: headers ??{ 'Content-Type': 'application/json' },
+        body: JSON.stringify( body ) ?? null,
+        credentials: credentials ?? 'include', 
+    }
+}
 
 export const useRequestStore = defineStore('request', () => {
     async function login(data) {
         try {
-            const response = await fetch(`${backendHost}${backendPaths.login}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-                credentials: 'include',
-            });
+            const response = await fetch(
+                `${backendHost}${backendPaths.login}`, 
+                setPropsRequest({method: 'POST',body: data})
+            );
 
             if (response.ok) {
                 const responseData = await response.json();
                 console.log('Response:', responseData);
-                const successLogIn = "Logowanie powiodło się"
-                bannerStore.setMessage(successLogIn, 'success');
                 return {status:"ok",token:responseData.token}
             } else {
                 const errorData = await response.json();
                 console.error('Error:', errorData);
-                const errorLogIn = "Logowanie nie powiodło się"
-                bannerStore.setMessage(errorLogIn, 'error');
                 return {status:"error"}
             }
         } catch (error) {
@@ -36,14 +38,11 @@ export const useRequestStore = defineStore('request', () => {
         
         const {username,email,password,first_name,last_name}= data
         try {
-            const response = await fetch(`${backendHost}${backendPaths.register}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({username,email,password,first_name,last_name}),
-                credentials: 'include',
-            })
+            const response = await fetch(`${backendHost}${backendPaths.register}`,
+                {
+                    method: 'POST',
+                    body: {username,email,password,first_name,last_name},},
+            )
             if (response.ok) {
                 const responseData = await response
                 console.log('Response:', responseData)

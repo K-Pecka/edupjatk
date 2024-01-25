@@ -1,9 +1,9 @@
 // BannerComponent.vue
 <script setup>
-import { useBannerStore } from '@/stores/banner/main.js'
-const {getInfo} = useBannerStore()
-const {message,status} = getInfo();
-console.log(message,status)
+import { useBannerStore } from '@/stores/elementPage/banner/main.js'
+const { getInfo } = useBannerStore()
+const { message, status } = getInfo()
+console.log(message, status)
 </script>
 
 <template>
@@ -26,7 +26,7 @@ console.log(message,status)
 }
 
 .success {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -44,3 +44,4 @@ button {
   margin-top: 5px;
 }
 </style>
+@/stores/elementPage/banner/main.js @/stores/elementPage/bannerCookies/main.js

@@ -1,7 +1,8 @@
 <script setup>
-import ListItems from '@/stores/panelButtonData.js'
+import {useNavigationStore} from '@/stores/elementPage/navigation/main.js'
 import router from '@/router/index.js'
-
+const navigation = useNavigationStore().getNavigation('main')
+console.log(navigation)
 const {goTo} = router
 
 const closeOffcanvas = (path) => {
@@ -39,9 +40,9 @@ const closeOffcanvas = (path) => {
           ></button>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav" :class="ListItems.className.div">
-            <li :style="ListItems.style.button.normal" class="nav-item" v-for="item of ListItems.buttons" :key="item.label">
-              <router-link @click="closeOffcanvas(item.to)" data-bs-dismiss="offcanvas" class="nav-link" aria-current="page" :to="item.to" :class="[item.class,ListItems.className.button]">{{item.label}}</router-link>
+          <ul class="navbar-nav" :class="navigation.className.div">
+            <li :style="navigation.style.button.normal" class="nav-item" v-for="item of navigation.buttons" :key="item.label">
+              <router-link @click="closeOffcanvas(item.to)" data-bs-dismiss="offcanvas" class="nav-link" aria-current="page" :to="item.to" :class="[item.class,navigation.className.button]">{{item.label}}</router-link>
             </li>
           </ul>
         </div>

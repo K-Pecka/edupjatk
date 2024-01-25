@@ -1,11 +1,11 @@
 <script setup>
-import { bannerStorage } from '@/stores/static/pageData/banner.js'
-import {toRefs} from 'vue'
-const { cookiesProperty, showCookieBanner, acceptCookies } = toRefs(bannerStorage().cookies);
+import { useBannerCookiesStore } from '@/stores/elementPage/bannerCookies/main.js'
+import { toRefs } from 'vue'
+const { cookiesProperty, showCookieBanner, acceptCookies } = toRefs(useBannerCookiesStore().cookies)
 </script>
 
 <template>
-  <div :class="{ 'hide': !showCookieBanner }">
+  <div :class="{ hide: !showCookieBanner }">
     <p>
       {{ cookiesProperty.content }}
       <button @click="acceptCookies">{{ cookiesProperty.button.title }}</button>
@@ -37,3 +37,4 @@ button {
   cursor: pointer;
 }
 </style>
+@/stores/static/banner/banner.js @/stores/elementPage/banner/main.js

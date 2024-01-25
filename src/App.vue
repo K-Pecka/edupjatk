@@ -1,14 +1,14 @@
 <script setup>
-import BackgroundAnimation from "@/components/static/BackgroundAnimation.vue";
-import CookieBanner from "@/components/static/CookieBanner.vue";
-import { bannerStorage } from '@/stores/static/pageData/banner.js'
-const { showCookieBanner} = bannerStorage().cookies;
+import BackgroundAnimation from '@/components/static/BackgroundAnimation.vue'
+import CookieBanner from '@/components/static/CookieBanner.vue'
+import { useBannerCookiesStore } from '@/stores/elementPage/bannerCookies/main.js'
+const { showCookieBanner } = useBannerCookiesStore().cookies
 </script>
 
 <template>
   <RouterView />
-  <BackgroundAnimation id="background-animation"/>
-  <CookieBanner v-if="showCookieBanner"/>
+  <BackgroundAnimation id="background-animation" />
+  <CookieBanner v-if="showCookieBanner" />
 </template>
 
 <style scoped>
@@ -21,3 +21,4 @@ const { showCookieBanner} = bannerStorage().cookies;
   height: 100vh;
 }
 </style>
+@/stores/static/banner/banner.js @/stores/elementPage/banner/main.js
