@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
     <div class="col-8 quest">
-      <Quest :time='formattedTime'/> 
-      <Hint :bgcolor='backgroundHighlightedNumber'/>
+      <QuestModul :time='formattedTime'/> 
+      <HintModul :bgcolor='backgroundHighlightedNumber'/>
     </div>
     <div class="col-4 clock"> 
       <canvas
@@ -66,8 +66,8 @@
 }
 </style>
 <script setup>
-import Hint from './HintModule.vue'
-import Quest from './QuestModule.vue'
+import HintModul from './HintModul.vue'
+import QuestModul from './QuestModul.vue'
 import { ref, onMounted, computed } from 'vue'
 const clockCanvas = ref(null)
 let ctx

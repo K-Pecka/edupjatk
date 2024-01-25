@@ -15,7 +15,8 @@ const router = createRouter({
 router.publicPath = ['/access', '/']
 router.paths = {
     home: '/',
-    panel: '/panel'
+    panel: '/panel',
+    access: '/access'
 };
 
 router.goTo= (targetPath) => {

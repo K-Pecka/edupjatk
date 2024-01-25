@@ -3,7 +3,7 @@ import { ref,markRaw } from 'vue'
 import LogInForm from '@/components/access/logIn/LogInForm.vue'
 import SignUpForm from '@/components/access/signUp/SignUpForm.vue'
 
-export const accessHTMLstore = defineStore('accessFormData', () => {
+export const useAccessHTMLstore = defineStore('accessFormData', () => {
   const defaultState = {
     logIn: {
       component: markRaw(LogInForm),
@@ -39,39 +39,42 @@ export const accessHTMLstore = defineStore('accessFormData', () => {
       fields: [
         {
           label: 'Imie',
-          name: 'name',
+          name: 'first_name',
           type: 'text'
         },
         {
           label: 'Nazwisko',
-          name: 'surname',
+          name: 'last_name',
           type: 'text'
         },
         {
           label: 'Login',
+          name: 'username',
+          type: 'text'
+        },
+        {
+          label: 'Emile',
           name: 'login',
           type: 'text'
         },
         {
-          label: 'emile',
-          name: 'login',
-          type: 'email'
+          label: 'Hasło',
+          name: 'password',
+          type: 'password'
         },
         {
-          label: 'Typ konta',
-          name: 'type',
-          type: 'checkbox'
+          label: 'Potwierdź hasło',
+          name: 'passwordConfirmation',
+          type: 'password'
         }
       ]
     }
   }
-
   const accessState = ref(defaultState.logIn)
 
   function getState() {
     return accessState
   }
-
   const changeState = async () => {
     accessState.value =
       accessState.value.state === 'logIn' ? defaultState.signUp : defaultState.logIn

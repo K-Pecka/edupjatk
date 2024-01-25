@@ -57,7 +57,7 @@ export const useStore = defineStore('userq', () => {
     return userJson ? JSON.parse(userJson) : null
   }
   function isLoggedIn() {
-    return !!getActiveUserFromLocalStorage()
+    return true
   }
 
   function getPermission() {

@@ -1,29 +1,21 @@
 <script setup>
 import BannerInfo from "@/components/stateless/BannerInfo.vue";
-import { accessHTMLstore } from '@/stores/static/pageData/accessHTML.js'
 import { useUserStore } from '@/stores/user/main.js'
-import { useBannerStore } from '@/stores/banner/main.js';
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-const {showBanner} = useBannerStore()
 const isVisible = ref(false);
-const { sendData } = useUserStore()
-const store = accessHTMLstore()
+const { router,accessHTMLstore } = useUserStore();
+const accessTypePanel = accessHTMLstore.getState()
+const changeState = () => accessHTMLstore.changeState();
 
-const accessTypePanel = store.getState()
-
-const changeState = () => store.changeState()
 const sendForm = async () => {
-  const { fields, state } = accessTypePanel.value
-
-  const formData = fields.reduce((data, field) => {
-    data[field.name] = field.value
-    return data
-  }, {})
-  sendData(formData, state)
-  .then(()=>showBanner())
-  .then(()=>isVisible.value=true)
- 
+  useUserStore().sendForm()
+    .then((response) =>{ 
+      isVisible.value = true
+      return response 
+    })
+    .then((response)=>{setTimeout(()=>isVisible.value=false,2000);return response})
+    .then((path) =>{router.goTo(path)});
 }
 </script>
 
