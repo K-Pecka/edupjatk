@@ -11,7 +11,7 @@ import teacherPanel from '@/components/panel/teacher/InitComponents.vue'
 export const useUserStore = defineStore('user', () => {
   const accessHTMLstore = useAccessHTMLstore()
   const { showBanner, setMessage } = useBannerStore()
-  const { login, register } = useRequestStore()
+  const { login, register,getUser } = useRequestStore()
   const {getCookies,setCookies} = useFunctionStore()
   const path = {
     ok: router.paths.panel,
@@ -42,6 +42,7 @@ export const useUserStore = defineStore('user', () => {
     {
       setMessage('wystąpił problem z tokenem', 'success')
     }
+    console.log(getUser(token,CSR))
     //const { surname, userName, nickName, email } = getUser(token,CSR)
     const { surname, userName, nickName, email } = {
       surname: "Kowalski", userName:"JKowalski", nickName:"Kowal", email:"K@wp.pl"}

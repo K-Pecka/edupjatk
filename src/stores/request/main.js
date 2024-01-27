@@ -20,7 +20,7 @@ export const useRequestStore = defineStore('request', () => {
                 `${backendHost}${backendPaths.user}`, 
                 setPropsRequest({method: 'GET',headers: { 
                     'Content-Type': 'application/json',
-                    'Authorization':token,
+                    'Authorization': `Token ${token}`,
                     'X-CSRFToken':CSR
                 }})
             );
