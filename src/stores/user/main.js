@@ -12,7 +12,7 @@ export const useUserStore = defineStore('user', () => {
   const accessHTMLstore = useAccessHTMLstore()
   const { showBanner, setMessage } = useBannerStore()
   const { login, register,getUser } = useRequestStore()
-  const {getCookies,setCookies} = useFunctionStore()
+  const {getCookies,setCookies,deleteCookies} = useFunctionStore()
   const path = {
     ok: router.paths.panel,
     error: router.paths.access
@@ -38,11 +38,19 @@ export const useUserStore = defineStore('user', () => {
   function getUserInfo() {
     const token = getCookies('userToken') ?? null;
     const CSR = getCookies('csrftoken') ?? null
-    if(token && CSR)
-    {
-      setMessage('wystąpił problem z tokenem', 'success')
+    try{
+      if(token && CSR)
+      {
+        setMessage('wystąpił problem z tokenem', 'error')
+      }
+      console.log(getUser(token,CSR))
     }
-    console.log(getUser(token,CSR))
+    catch(exeption)
+    {
+      console.error(exeption)
+    }
+
+    
     //const { surname, userName, nickName, email } = getUser(token,CSR)
     const { surname, userName, nickName, email } = {
       surname: "Kowalski", userName:"JKowalski", nickName:"Kowal", email:"K@wp.pl"}
@@ -103,6 +111,9 @@ export const useUserStore = defineStore('user', () => {
       state: state
     }
   }
-
-  return { getAccessPath, sendForm, accessHTMLstore, router, isLoggedIn, getUserInfo, getPanel }
+  function logOut()
+  {
+    deleteCookies('userToken')
+  }
+  return { getAccessPath, sendForm, accessHTMLstore, router, isLoggedIn, getUserInfo, getPanel,logOut }
 })

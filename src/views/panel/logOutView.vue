@@ -5,19 +5,19 @@ import router from '@/router/index.js'
 import { onMounted } from 'vue'
 
 const { logOut } = useUserStore()
-const { logOutProperty } = useBannerStore().logOut
+const { logOutProperty } = useBannerStore()
 const { goTo, paths } = router
 
 onMounted(async () => {
   logOut()
-  setTimeout(() => goTo(paths.home), property.delay)
+  setTimeout(() => goTo(paths.home), logOutProperty.delay)
 })
 </script>
 
 <template>
   <div class="goodbye-container">
     <div class="goodbye-message">
-      <p>{{ property.title }}!<span class="emoji">👋</span></p>
+      <p>{{ logOutProperty.title }}!<span class="emoji">👋</span></p>
     </div>
   </div>
 </template>

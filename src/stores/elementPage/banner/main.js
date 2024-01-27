@@ -2,7 +2,8 @@ import { defineStore } from 'pinia';
 import { toRefs, reactive } from 'vue';
 export const useBannerStore = defineStore('bannerInfo', () => {
     const logOutProperty={
-      title:"narka"
+      title:"narka",
+      delay:2000
     }
   const state = reactive({
     message: '',

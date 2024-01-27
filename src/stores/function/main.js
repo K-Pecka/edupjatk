@@ -18,5 +18,8 @@ export const useFunctionStore = defineStore('function', () => {
         }
         return null;
     }
-  return { capitalizeText,getCookies,setCookies }
+    const deleteCookies = () =>{
+      document.cookies="";
+    }
+  return { capitalizeText,getCookies,setCookies,deleteCookies }
 })
