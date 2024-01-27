@@ -1,5 +1,5 @@
 <script setup>
-
+import {reactive} from 'vue'
 const props = defineProps(['fields']);
 const  fields  = reactive(props.fields);
 </script>
@@ -10,7 +10,7 @@ const  fields  = reactive(props.fields);
     <input :id="`form-${field.name}`" :type="field.type" :name="field.name" v-model="field.value" required />
   </div>
 </template>
-<style scoped>
+<style>
 input {
   background-color: transparent;
   border: 0;

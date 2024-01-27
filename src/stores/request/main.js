@@ -13,6 +13,32 @@ function setPropsRequest(request)
 }
 
 export const useRequestStore = defineStore('request', () => {
+    
+    async function getUser(token,CSR) {
+        try {
+            const response = await fetch(
+                `${backendHost}${backendPaths.user}`, 
+                setPropsRequest({method: 'GET',headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization':token,
+                    'X-CSRFToken':CSR
+                }})
+            );
+
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log('Response:', responseData);
+                return {status:"ok",token:responseData.token}
+            } else {
+                const errorData = await response.json();
+                console.error('Error:', errorData);
+                return {status:"error"}
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
     async function login(data) {
         try {
             const response = await fetch(
@@ -34,6 +60,7 @@ export const useRequestStore = defineStore('request', () => {
         }
     }
 
+    
     async function register(data) {
         
         const {username,email,password,first_name,last_name}= data
@@ -55,5 +82,5 @@ export const useRequestStore = defineStore('request', () => {
         }
     }
 
-    return { login, register };
+    return { login, register, getUser };
 });

@@ -1,8 +1,8 @@
 <script setup>
 import { useUserStore } from '@/stores/user/main.js';
-import { usefunctionStore } from '@/stores/function/main.js'
+import { useFunctionStore } from '@/stores/function/main.js'
 import {ref} from 'vue'
-  const { capitalizeText } = usefunctionStore()
+  const { capitalizeText } = useFunctionStore()
   const store = useUserStore();
   const user = store.getUserInfo();
 
@@ -47,6 +47,10 @@ const hideModal = () => {
 </template>
 
 <style scoped>
+.table *
+{
+  color:#333;
+}
 .modal {
   position: fixed;
   top: 0;
@@ -77,11 +81,12 @@ const hideModal = () => {
   }
   .table
   {
+    color:#333;
     min-width: 50vw;
     min-height: 40vh;
   }
   
-  .edit-icon {
+  .edit-icon *{
     cursor: pointer;
     color: #28a745;
   }

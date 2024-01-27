@@ -7,7 +7,7 @@ export const useNavigationStore = defineStore('navigation', () => {
           //{ label: 'ustawienia', to: { name: 'setting' }, class: [] },
           { label: 'moduły', to: { name: 'educationModule' }, class: [] },
           { label: 'profil', to: { name: 'profile' }, class: [] },
-          { label: 'testy', to: { name: 'profile' }, class: [] },
+          { label: 'testy', to: { name: 'test' }, class: [] },
           { label: 'statystyki', to: { name: 'statistic' }, class: [] },
           { label: 'wyloguj', to: { name: 'logOut' }, class: [] }
         ],

@@ -1,4 +1,7 @@
-
+*
+{
+  color:#eee;
+}
   body {
     min-height: 100vh;
     display: flex;

@@ -40,7 +40,11 @@ const subject = 'math'
 </template>
 
 <style scoped>
-
+.card-text
+{
+  color:#333;
+  text-align: justify;
+}
 a{
   text-decoration: none;
 }

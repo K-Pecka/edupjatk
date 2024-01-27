@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="row">
-    <div class="col-8 quest">
+    <div class="col-md-8 col-sm-12 quest">
       <QuestModul :time='formattedTime'/> 
       <HintModul :bgcolor='backgroundHighlightedNumber'/>
     </div>
-    <div class="col-4 clock"> 
+    <div class="col-md-4 col-sm-12 clock"> 
       <canvas
       ref="clockCanvas"
       width="400"
@@ -128,33 +128,52 @@ const drawHand = ({ angle, length, width, color }) => {
 }
 
 const drawClockFace = () => {
-  const radius = 160
-  ctx.beginPath()
-  ctx.arc(clockCanvas.value.width / 2, clockCanvas.value.height / 2, radius, 0, 2 * Math.PI)
-  ctx.fillStyle = backgroundColorClock.value
-  ctx.fill()
-  ctx.lineWidth = 2
-  ctx.strokeStyle = '#333'
-  ctx.stroke()
+  const radius = 160;
+  const markLength = 10;
 
-  ctx.font = 'bold 20px Arial'
-  ctx.textAlign = 'center'
-  ctx.textBaseline = 'middle'
+  ctx.beginPath();
+  ctx.arc(clockCanvas.value.width / 2, clockCanvas.value.height / 2, radius, 0, 2 * Math.PI);
+  ctx.fillStyle = backgroundColorClock.value;
+  ctx.fill();
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = '#333';
+  ctx.stroke();
+
+  ctx.lineWidth = 2;
+  for (let i = 0; i < 60; i++) {
+    const angle = (i / 60) * (2 * Math.PI);
+    const startX = clockCanvas.value.width / 2 + (radius - (i % 5 === 0 ? 1.5 * markLength : markLength)) * Math.cos(angle);
+    const startY = clockCanvas.value.height / 2 + (radius - (i % 5 === 0 ? 1.5 * markLength : markLength)) * Math.sin(angle);
+    const endX = clockCanvas.value.width / 2 + radius * Math.cos(angle);
+    const endY = clockCanvas.value.height / 2 + radius * Math.sin(angle);
+
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(endX, endY);
+    ctx.stroke();
+  }
+
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = '#333';
+  ctx.font = 'bold 20px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
 
   for (let i = 1; i <= 12; i++) {
-    const angle = ((i - 3) * (2 * Math.PI)) / 12
-    const x = clockCanvas.value.width / 2 + Math.cos(angle) * radius * 0.8
-    const y = clockCanvas.value.height / 2 + Math.sin(angle) * radius * 0.8
+    const angle = ((i - 3) * (2 * Math.PI)) / 12;
+    const x = clockCanvas.value.width / 2 + Math.cos(angle) * radius * 0.8;
+    const y = clockCanvas.value.height / 2 + Math.sin(angle) * radius * 0.8;
 
-    ctx.beginPath()
-    ctx.arc(x, y, 20, 0, 2 * Math.PI)
-    const numberColor = i === highlightedNumber.value ? backgroundHighlightedNumber.value : '#fff'
-    ctx.fillStyle = numberColor
-    ctx.fill()
-    ctx.fillStyle = '#000'
-    ctx.fillText(i.toString(), x, y)
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, 2 * Math.PI);
+    const numberColor = i === highlightedNumber.value ? backgroundHighlightedNumber.value : '#ffffff00';
+    ctx.fillStyle = numberColor;
+    ctx.fill();
+    ctx.fillStyle = '#333';
+    ctx.fillText(i.toString(), x, y);
   }
-}
+};
+
 
 const adjustMinutes = (amount) => {
   minutes += amount
@@ -166,7 +185,7 @@ const adjustMinutes = (amount) => {
     hours = (hours - 1 + 24) % 24
   }
 
-  highlightedNumber.value = hours % 12 || -1
+  highlightedNumber.value = hours % 12 || 12
   drawClock()
 }
 

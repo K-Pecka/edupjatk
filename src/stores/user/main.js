@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { useRequestStore } from '@/stores/request/main.js'
 import { useBannerStore } from '@/stores/elementPage/banner/main.js'
 import { useAccessHTMLstore } from '@/stores/elementPage/accessForm/main.js'
+import { useFunctionStore } from '@/stores/function/main.js'
 import router from '@/router/index.js'
 
 import userPanel from '@/components/panel/user/InitComponents.vue'
@@ -11,6 +12,7 @@ export const useUserStore = defineStore('user', () => {
   const accessHTMLstore = useAccessHTMLstore()
   const { showBanner, setMessage } = useBannerStore()
   const { login, register } = useRequestStore()
+  const {getCookies,setCookies} = useFunctionStore()
   const path = {
     ok: router.paths.panel,
     error: router.paths.access
@@ -30,16 +32,19 @@ export const useUserStore = defineStore('user', () => {
     return panel[getPermission()] || userPanel
   }
   function isLoggedIn() {
-    return true
+    return !!getCookies('userToken')
   }
 
   function getUserInfo() {
-    const { surname, userName, nickName, email } = {
-      surname: 'surname',
-      userName: 'userName',
-      nickName: 'nickName',
-      email: 'email'
+    const token = getCookies('userToken') ?? null;
+    const CSR = getCookies('csrftoken') ?? null
+    if(token && CSR)
+    {
+      setMessage('wystąpił problem z tokenem', 'success')
     }
+    //const { surname, userName, nickName, email } = getUser(token,CSR)
+    const { surname, userName, nickName, email } = {
+      surname: "Kowalski", userName:"JKowalski", nickName:"Kowal", email:"K@wp.pl"}
     return (
       surname &&
       userName &&
@@ -70,10 +75,16 @@ export const useUserStore = defineStore('user', () => {
     const { formData, state } = setData()
 
     return sendData(formData, state).then((response) => {
-      if (response.status == 'ok') setMessage('okej', 'success')
-      else setMessage('okej', 'error')
+      const {token = null, status} =response
+      if (status == 'ok' && token)
+      {
+        setMessage('okej', 'success')
+        setCookies({token:'userToken',value:token})
+      }  
+      else 
+        setMessage('okej', 'error')
       showBanner()
-      return path[response.status] || null
+      return path[status] || null
     })
   }
 
