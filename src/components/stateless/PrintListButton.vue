@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-
-const { className: generalClass, style, list } = defineProps(['buttons']).buttons
+const props = defineProps(['buttons']);
+const { className: generalClass, style, list } = props.buttons
 
 const hoveredButtonIndex = ref(null)
 

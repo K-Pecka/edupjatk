@@ -1,11 +1,11 @@
 <script setup>
 import { useUserStore } from '@/stores/user/main.js'
-import { bannerStorage } from '@/stores/static/pageData/banner.js'
+import { useBannerStore } from '@/stores/elementPage/banner/main.js'
 import router from '@/router/index.js'
 import { onMounted } from 'vue'
 
 const { logOut } = useUserStore()
-const { property } = bannerStorage().logOut
+const { logOutProperty } = useBannerStore().logOut
 const { goTo, paths } = router
 
 onMounted(async () => {

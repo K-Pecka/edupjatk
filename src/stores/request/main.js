@@ -56,7 +56,7 @@ export const useRequestStore = defineStore('request', () => {
                 return {status:"error"}
             }
         } catch (error) {
-            console.error('Error:', error);
+            return {'error':error};
         }
     }
 

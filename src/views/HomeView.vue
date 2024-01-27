@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import {useStore} from '@/stores/static/pageData/homePage.js'
+import {useStore} from '@/stores/elementPage/homePage/main.js'
 const {header,buttonsList} = useStore().getMainPage();
 
 </script>
