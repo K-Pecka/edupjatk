@@ -1,12 +1,12 @@
 <script setup>
 import navBar from '@/components/navBar/initComponents.vue'
-import displayPanel from '@/components/stateless/DisplayPanel.vue'
+import TestPage from '@/pages/TestPage.vue'
 </script>
 
 <template>
   <section>
     <navBar />
-    <displayPanel/>
+    <TestPage/>
   </section>
 </template>
 <style scoped>

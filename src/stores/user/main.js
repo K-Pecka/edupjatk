@@ -5,8 +5,8 @@ import { useAccessHTMLstore } from '@/stores/elementPage/accessForm/main.js'
 import { useFunctionStore } from '@/stores/function/main.js'
 import router from '@/router/index.js'
 
-import userPanel from '@/components/panel/user/initComponents.vue'
-import teacherPanel from '@/components/panel/teacher/initComponents.vue'
+import userPanel from '@/components/panel/user/InitComponents.vue'
+import teacherPanel from '@/components/panel/teacher/InitComponents.vue'
 
 export const useUserStore = defineStore('user', () => {
   const accessHTMLstore = useAccessHTMLstore()
@@ -25,7 +25,7 @@ export const useUserStore = defineStore('user', () => {
     return isLoggedIn() && router.publicPath.includes(path)
   }
   function getPermission() {
-    const activeUser = 'user'
+    const activeUser= {permission:'teacher'}
     return activeUser?.permission
   }
   function getPanel() {
