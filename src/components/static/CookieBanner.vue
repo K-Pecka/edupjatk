@@ -15,11 +15,12 @@ const { cookiesProperty, showCookieBanner, acceptCookies } = toRefs(useBannerCoo
 
 <style scoped>
 div {
+  color:"#333";
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: rgba(255, 255, 255, 0.15);;
   padding: 20px;
   text-align: center;
   transition: transform 0.5s ease-in-out;

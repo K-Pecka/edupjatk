@@ -15,7 +15,7 @@ const sendForm = async () => {
       return response 
     })
     .then((response)=>{setTimeout(()=>isVisible.value=false,2000);return response})
-    .then((path) =>{router.goTo(path)});
+    .then((path) =>{setTimeout(()=>router.goTo(path),2000)});
 }
 </script>
 

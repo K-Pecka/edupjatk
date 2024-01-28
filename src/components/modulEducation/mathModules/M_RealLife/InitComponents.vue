@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <BannerInfo v-if="isVisible" />
     <div class="row">
     <div class="col-md-8 col-sm-12 quest">
       <QuestModul :time='formattedTime'/> 
@@ -12,23 +13,26 @@
       height="400"
     ></canvas>
     <div class="btn-container">
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <div class="btn-group" role="group" aria-label="Basic outlined ">
           <button type="button" class="btn btn-outline-primary" @click="adjustMinutes(-5)">-</button>
           <button type="button" class="btn btn-primary">5 min</button>
           <button type="button" class="btn btn-outline-primary" @click="adjustMinutes(5)">+</button>
         </div>
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <div class="btn-group" role="group" aria-label="Basic outlined ">
           <button type="button" class="btn btn-outline-primary" @click="adjustMinutes(-15)">-</button>
           <button type="button" class="btn btn-primary">15 min</button>
           <button type="button" class="btn btn-outline-primary" @click="adjustMinutes(15)">+</button>
         </div>
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <div class="btn-group" role="group" aria-label="Basic outlined ">
           <button type="button" class="btn btn-outline-primary" @click="adjustMinutes(-60)">-</button>
           <button type="button" class="btn btn-primary">1 h</button>
           <button type="button" class="btn btn-outline-primary" @click="adjustMinutes(60)">+</button>
         </div>
-        <div class="mt-4 btn-group" role="group" aria-label="Basic outlined example">
-          <button type="button" class="btn btn-success" @click="confirmTime">Zatwierdź</button>
+      </div>
+      <div>
+        <div class="btn-group config" role="group" aria-label="Basic outlined">
+          <button type="button" class="btn btn-primary" @click="confirmTime">odpowiedź</button>
+          <button type="button" class="btn btn-primary" @click="setup">nowe zadanie</button>
         </div>
       </div>
     </div>
@@ -36,6 +40,10 @@
   </div>
 </template>
 <style scoped>
+.config
+{
+  transform: translate(8em,4em);
+}
 .clock
 {
   display:flex;
@@ -68,16 +76,21 @@
 <script setup>
 import HintModul from './HintModul.vue'
 import QuestModul from './QuestModul.vue'
-import { ref, onMounted, computed } from 'vue'
+import BannerInfo from "@/components/stateless/BannerInfo.vue";
+import { ref, onMounted,computed } from 'vue'
+import { useBannerStore } from '@/stores/elementPage/banner/main.js'
+const { showBanner, setMessage } = useBannerStore()
 const clockCanvas = ref(null)
+
+const isVisible = ref(false);
 let ctx
 let hours = 0
 let minutes = 0
 
-const correct = {
-  hours: Math.floor(Math.random() * 24),
-  minutes: Math.floor(Math.random() * 12) * 5
-}
+const correct = ref({
+    hours: 0,
+    minutes: 0
+})
 const hands = [
   {
     angle: () => -Math.PI / 2 + (hours + minutes / 60) * ((2 * Math.PI) / 12),
@@ -93,8 +106,9 @@ const hands = [
   }
 ]
 
-const formattedTime = computed(() => {
-  let { minutes, hours } = correct
+
+const formattedTime = computed(()=> {
+  let { minutes, hours } = correct.value
   const formattedHours = hours < 10 ? `0${hours}` : hours
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes
   return `${formattedHours}:${formattedMinutes}`
@@ -190,34 +204,37 @@ const adjustMinutes = (amount) => {
 }
 
 const confirmTime = () => {
-  console.log(`${hours} ${minutes} ${correct.hours} ${correct.minutes}`)
-  console.log(hours === (correct.hours % 12 || 12))
-  console.log(minutes === correct.minutes)
-  if ((hours % 12 || 12) === (correct.hours % 12 || 12) && minutes === correct.minutes) {
-    console.log('Odpowiedź poprawna!')
-    backgroundColorClock.value = '#8f8'
+  if ((hours % 12 || 12) === (correct.value.hours % 12 || 12) && minutes === correct.value.minutes) {
+    setMessage('Wykonano poprawnie','success')
+    showBanner()
     drawClock()
   } else {
-    console.log('Odpowiedź niepoprawna.')
-    backgroundColorClock.value = '#f88'
+    setMessage('Wykonano nie poprawnie','error')
+    showBanner()
     drawClock()
   }
+  isVisible.value = true
+  setTimeout(()=>isVisible.value=false,2000)
 }
-
-onMounted(() => {
+function setup()
+{
+  correct.value=
+  {
+    hours: Math.floor(Math.random() * 24),
+    minutes: Math.floor(Math.random() * 12) * 5
+  }
   hours = Math.floor(Math.random() * 24)
   minutes = Math.floor(Math.random() * 12) * 5
-  ctx = clockCanvas.value.getContext('2d')
-
   minutes = (minutes + 5) % 60
   if (minutes === 0) {
     hours = (hours + 1) % 24
   }
-
   highlightedNumber.value = hours % 12 || 12
   drawClockFace()
-  //backgroundColor.value = '#fff'
-
   drawClock()
+}
+onMounted(() => {
+  ctx = clockCanvas.value.getContext('2d')
+  setup();
 })
 </script>
