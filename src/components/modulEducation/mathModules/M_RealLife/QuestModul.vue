@@ -1,12 +1,15 @@
 <script setup>
-import {onMounted,ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps(['time']);
 const time = props.time;
-const quest =ref("brak pytania")
-const questions =[
+const quest = ref("brak pytania")
+const questions = [
 `Zegar w kuchni babci jest nie poprawnie nastawiony. Spytany  taty o godzinę dowiadujesz się, że jest ${time}. Czy pomożesz babci ustawić poprawnie zegar?`,
-`Basia i Ala umówieniły się w centrum handlowym o ${time}, Ala dotarła pierwsza ale zegar w holu jest zepsuty i wskazuje ${time-4}. Czy potrafisz dostosować zegar, aby wiedzieć, kiedy się?`
+`Ustaw zegar na godzinę ${time}.`,
+`Ustaw zegar na godzinę ${time}.`,
+`Ustaw zegar na godzinę ${time}.`,
+`Ustaw godzinę ${time}.`,
 ]
 
 const getQuest = () => {

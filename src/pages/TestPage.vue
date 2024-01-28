@@ -5,19 +5,16 @@ import { Modal } from 'usemodal-vue3'
 
 import { useRouter } from 'vue-router'
 
+const { createClass } = useCounterStore()
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faFontAwesomeLogoFull, faAddressBook } from '@fortawesome/free-solid-svg-icons'
+import { faFontAwesomeLogoFull, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const { currentComponent, choosenOption, options, side_panel } = toRefs(useCounterStore())
 
 const router = useRouter()
 
 const isJoinCreateClassModalVisible = ref(false)
-
-function joinClass() {
-
-}
-
 const chooseOption = (choice) => {
   if (choice) {
     console.log(choice)
@@ -97,10 +94,9 @@ function enableJoinCreateClassModal() {
       >
         <div class="row p-3 border-bottom border-gray justify-content-between">
           <span class="row col-2 font-weight-bold align-content-center">Klasy</span>
-          <div id="join-create-class-button" class="row col-2 py-1 px-3 rounded border border-gray"
+          <div id="join-create-class-button" class="row col-auto rounded border border-gray"
                @click="enableJoinCreateClassModal">
-            <font-awesome-icon :icon="faAddressBook" class="row w-auto p-0" style="height: 20px; width: 20px;" />
-            <span class="row align-content-center w-auto">Dołącz do klasy</span>
+            <font-awesome-icon :icon="faPlus" class="row w-auto p-0" style="height: 20px; width: 20px;" />
           </div>
         </div>
         <div id="component-container" class="row px-0 pb-0 justify-content-start">
@@ -109,10 +105,11 @@ function enableJoinCreateClassModal() {
       </div>
     </div>
   </div>
-  <Modal v-model:visible="isJoinCreateClassModalVisible" :offsetTop="250" title="Dołącz do klasy lub stwórz swoją własną!"
-         :okButton="{text: 'Dołącz', onclick: joinClass}" :cancelButton="{text: 'Powrót'}">
-    <div>Podaj kod dostępu do klasy...</div>
-    <input class="rounded border-gray text-white w-75" placeholder="Miejsce na kod">
+  <Modal v-model:visible="isJoinCreateClassModalVisible" :offsetTop="250" title="Tworzenie klasy"
+         :okButton="{text: 'Stwórz', onclick: createClass}" :cancelButton="{text: 'Powrót'}">
+    <div class="row">
+      <div class="w-25">Nazwa:</div><input class="rounded border-gray text-gray w-50 p-0" placeholder="Nazwa">
+    </div>
   </Modal>
 </template>
 <style scoped>

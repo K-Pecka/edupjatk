@@ -31,19 +31,22 @@
       </div>
     </div>
   </template>
-  
-  <script>
-  export default {
-    setup() {
-      const tests = [
-        { name: "Test 1", isOpen: true, startTime: "10:00 AM", endTime: "12:00 PM", duration: 30,status: "ocenione",gradue:3 },
-        { name: "Test 2", isOpen: false, startTime: "2:00 PM", endTime: "4:00 PM", duration: 45, status: "brak udziału" },
-      ];
-  
-      return { tests };
-    }
-  };
-  </script>
+
+<script setup>
+import { useUserStore } from '@/stores/user/main.js'
+import { onMounted, ref } from 'vue'
+const { getUserInfo } = useUserStore()
+const tests = [
+  { name: "Test 1", isOpen: true, startTime: "10:00 AM", endTime: "12:00 PM", duration: 30, status: "ocenione", gradue:3 },
+  { name: "Test 2", isOpen: false, startTime: "2:00 PM", endTime: "4:00 PM", duration: 45, status: "brak udziału" },
+];
+
+const wcaleNieStatyczneDane = ref('')
+
+onMounted(() => {
+  wcaleNieStatyczneDane.value = getUserInfo()
+})
+</script>
   
   <style scoped>
   .container {

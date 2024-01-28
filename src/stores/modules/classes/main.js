@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import {computed, ref} from 'vue'
 import ClassesList from '@/components/modules/classes/ClassesList.vue'
 import ModuleOne from '@/components/ModuleOne.vue' // testowe rozwiazanie
-import { faHome, faTasks, fa1, fa2, fa3, fa4, fa5, fa6 } from '@fortawesome/free-solid-svg-icons'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 export const useCounterStore = defineStore('counter', () => {
 
@@ -29,15 +29,11 @@ export const useCounterStore = defineStore('counter', () => {
     const options = ['hhhhhhhhhhhh', 'wwwwwwwww', 'ddddddddddd', 'ppppppppppp']
     const side_panel = [
       { text: 'Home', routing: 'classes', icon: faHome},
-        { text: 'Module', routing: 'module', icon: faTasks },
-        { text: '1', routing: '1', icon: fa1 },
-        { text: '2', routing: '2', icon: fa2 },
-        { text: '3', routing: '3', icon: fa3 },
-        { text: '4', routing: '4', icon: fa4 },
-        { text: '5', routing: '5', icon: fa5},
-        { text: '6', routing: '6', icon: fa6 }
     ]
 
+    function createClass() {
+        rooms.value.push({uuid: 13, name: 'test', color: 'pink', order: '13', allowedUsers: [''], pass: 'cV9bB1ms4nZx'})
+    }
 
     function onDragOver(event) {
         event.preventDefault()
@@ -147,5 +143,5 @@ export const useCounterStore = defineStore('counter', () => {
         }
     })
 
-    return { onDragOver, rooms, onDragLeave, onDrop, loginMe, onDragEnter, onDragStart, registerMe, draggedItemId, dragEnterId, choosenOption, currentComponent, options, side_panel, kids }
+    return { onDragOver, rooms, onDragLeave, onDrop, loginMe, createClass, onDragEnter, onDragStart, registerMe, draggedItemId, dragEnterId, choosenOption, currentComponent, options, side_panel, kids }
 })

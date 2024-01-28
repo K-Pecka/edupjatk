@@ -5,7 +5,9 @@ const bgcolor = props.bgcolor
 <template>
     <div class="hint">
         <h2>Podpowiedź:</h2>
-        Kolorem <span class="current-time-indicator" :style="{ backgroundColor: bgcolor }"></span> oznaczono aktualną godzinę jaką pokazuje zegar
+        Kolorem
+      <span class="current-time-indicator" :style="{ backgroundColor: bgcolor }"></span>
+      oznaczono aktualną godzinę jaką pokazuje zegar
       </div>
 </template>
 <style scoped>

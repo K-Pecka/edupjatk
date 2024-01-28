@@ -1,5 +1,5 @@
 <script setup>
-import BannerInfo from "@/components/stateless/BannerInfo.vue";
+import BannerInfo from "@/components/stateless/bannerInfo.vue";
 import { useUserStore } from '@/stores/user/main.js'
 import { ref } from 'vue'
 
