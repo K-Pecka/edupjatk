@@ -7,12 +7,14 @@ import { faEdit, faPlus, faTrash, faGears, faSquare } from '@fortawesome/free-so
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const isClassManagementModalVisible = ref(false)
+const classId = ref(1)
 const addToClassModalVisible = ref(false)
 
 const { rooms, kids } = toRefs(useCounterStore())
 const { onDragOver, onDragEnter, onDragLeave, onDragStart, onDrop } = useCounterStore()
 
-const enableClassManagementModal = () => {
+const enableClassManagementModal = (index) => {
+  classId.value = index
   isClassManagementModalVisible.value = true
 }
 
@@ -53,9 +55,9 @@ const enableAddToClassModal = () => {
         draggable="false"
     >
       <span class="h-50 col-6" draggable="false">{{ room.name }}</span>
-      <font-awesome-icon :icon="faGears" class="p-0 col-2" style="height: 20px; width: 20px;" @click="enableClassManagementModal" draggable="false" />
+      <font-awesome-icon :icon="faGears" class="p-0 col-2" style="height: 20px; width: 20px;" @click="enableClassManagementModal(index)" draggable="false" />
     </div>
-    <Modal v-model:visible="isClassManagementModalVisible" :title="`Zarządzanie klasą ${room.name}`">
+    <Modal v-model:visible="isClassManagementModalVisible" :title="`Zarządzanie klasą ${rooms[classId].name}`">
       <div>Zaproś, Usuń</div>
       <div class="row col-12 p-1 justify-content-end">
         <div class="row col-auto px-1" @click="enableAddToClassModal">
@@ -68,11 +70,11 @@ const enableAddToClassModal = () => {
         </div>
       </div>
       <ul class="row w-auto p-0">
-        <transition name="slide-fade" v-for="(kid, index) of kids" :key="index">
-          <li class="row border border-black align-content-center justify-content-between" v-show="kid.hidden===false">
+        <transition name="slide-fade" v-for="(kid, index) of rooms[classId].kids" :key="index">
+          <li class="row border border-black align-content-center justify-content-between" v-show="rooms[classId].kids.includes(kid)">
             <span class="row col-auto align-content-center">imię: {{kid.name}}, klasa: {{kid.class}}</span>
             <div class="row col-auto p-0">
-              <div class="row col-auto p-1" @click="kid.hidden=true">
+              <div class="row col-auto p-1" @click="rooms[classId].kids.splice(0, 1)">
                 <font-awesome-icon :icon="faTrash" class="p-0 col-2" style="height: 20px; width: 20px;" />
                 <span class="col-auto">Delete</span>
               </div>
@@ -84,9 +86,9 @@ const enableAddToClassModal = () => {
     <Modal v-model:visible="addToClassModalVisible" :title="`Wybierz kogo zaprosić do klasy`">
       <ul class="row col-12">
         <li class="row">
-          <div class="row border border-black align-content-center justify-content-between" v-for="(kid, index) of kids" :key="index" v-show="kid.hidden===true">
+          <div class="row border border-black align-content-center justify-content-between" v-for="(kid, index) of kids" :key="index" v-show="!rooms[classId].kids.includes(kid)">
             <span class="row col-auto align-content-center">imię: {{kid.name}}, klasa: {{kid.class}}</span>
-            <div class="row col-auto px-1" @click="kid.hidden=false">
+            <div class="row col-auto px-1" @click="rooms[classId].kids.push(kid)">
               <font-awesome-icon :icon="faPlus" class="p-0 col-2" style="height: 20px; width: 20px;" />
               <span class="col-auto px-1">Add</span>
             </div>

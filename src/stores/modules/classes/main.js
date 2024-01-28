@@ -10,29 +10,64 @@ export const useCounterStore = defineStore('counter', () => {
     let dragEnterId = null
     const choosenOption = ref('classes')
     const rooms = ref([
-        {uuid: 1, name: 'apple', color: 'pink', order: '1', allowedUsers: [''], pass: 'hG7pW9fE4sRt'}, // testowe rozwiazanie
-        {uuid: 2, name: 'lion', color: 'red', order: '2', allowedUsers: [''], pass: 'jK2lL6oP8qZw'}, // testowe rozwiazanie
-        {uuid: 3, name: 'elephant', color: 'orange', order: '3', allowedUsers: [''], pass: 'xN3mM5bV0cXz'}, // testowe rozwiazanie
-        {uuid: 4, name: 'giraffe', color: 'magenta', order: '4', allowedUsers: [''], pass: 'aB4nC9iO1vFx'}, // testowe rozwiazanie
-        {uuid: 5, name: 'orange', color: 'black', order: '5', allowedUsers: [''], pass: 'dF8gH2jK6lQx'}, // testowe rozwiazanie
-        {uuid: 6, name: 'whale', color: 'brown', order: '6', allowedUsers: [''], pass: 'sW5zZ7xY3vBp'}, // testowe rozwiazanie
-        {uuid: 7, name: 'newt', color: 'orange', order: '7', allowedUsers: [''], pass: 'rE1tT9uI4oOp'}, // testowe rozwiazanie
-        {uuid: 8, name: 'otter', color: 'yellow', order: '8', allowedUsers: [''], pass: 'iU3yY5tR8eAs'}, // testowe rozwiazanie
-        {uuid: 9, name: 'llama', color: 'purple', order: '9', allowedUsers: [''], pass: 'gD2hJ0kL6pFq'}, // testowe rozwiazanie
-        {uuid: 10, name: 'octopus', color: 'green', order: '10', allowedUsers: [''], pass: 'oX7pP2iI9kUw'},// testowe rozwiazanie
-        {uuid: 11, name: 'owl', color: 'red', order: '11', allowedUsers: [''], pass: 'vQ6wW4fF3eGd'}, // testowe rozwiazanie
-        {uuid: 12, name: 'leopard', color: 'blue', order: '12', allowedUsers: [''], pass: 'cV9bB1mM4nZx'} // testowe rozwiazanie
+        {uuid: 1, name: 'apple', color: 'pink', order: '1', allowedUsers: [''], pass: 'hG7pW9fE4sRt',
+            kids: []
+        }, // testowe rozwiazanie
+        {uuid: 2, name: 'lion', color: 'red', order: '2', allowedUsers: [''], pass: 'jK2lL6oP8qZw',
+            kids: []
+        }, // testowe rozwiazanie
+        {uuid: 3, name: 'elephant', color: 'orange', order: '3', allowedUsers: [''], pass: 'xN3mM5bV0cXz',
+            kids: []
+        }, // testowe rozwiazanie
+        {uuid: 4, name: 'giraffe', color: 'magenta', order: '4', allowedUsers: [''], pass: 'aB4nC9iO1vFx',
+            kids: []
+        }, // testowe rozwiazanie
+        {uuid: 5, name: 'orange', color: 'black', order: '5', allowedUsers: [''], pass: 'dF8gH2jK6lQx',
+            kids: []
+        }, // testowe rozwiazanie
+        {uuid: 6, name: 'whale', color: 'brown', order: '6', allowedUsers: [''], pass: 'sW5zZ7xY3vBp',
+            kids: []
+        }, // testowe rozwiazanie
+        {uuid: 7, name: 'newt', color: 'orange', order: '7', allowedUsers: [''], pass: 'rE1tT9uI4oOp',
+            kids: []
+        }, // testowe rozwiazanie
+        {uuid: 8, name: 'otter', color: 'yellow', order: '8', allowedUsers: [''], pass: 'iU3yY5tR8eAs',
+            kids: []
+        }, // testowe rozwiazanie
+        {uuid: 9, name: 'llama', color: 'purple', order: '9', allowedUsers: [''], pass: 'gD2hJ0kL6pFq',
+            kids: []
+        }, // testowe rozwiazanie
+        {uuid: 10, name: 'octopus', color: 'green', order: '10', allowedUsers: [''], pass: 'oX7pP2iI9kUw',
+            kids: []
+        },// testowe rozwiazanie
+        {uuid: 11, name: 'owl', color: 'red', order: '11', allowedUsers: [''], pass: 'vQ6wW4fF3eGd',
+            kids: []
+        }, // testowe rozwiazanie
+        {uuid: 12, name: 'leopard', color: 'blue', order: '12', allowedUsers: [''], pass: 'cV9bB1mM4nZx',
+            kids: []
+        } // testowe rozwiazanie
     ])
 
     const kids = [{name: 'Andrzej', class: '3b', hidden: false}, {name: 'Mateusz', class: '2c', hidden: false}, {name: 'Kacper', class: '1a', hidden: true}]
-
-    const options = ['hhhhhhhhhhhh', 'wwwwwwwww', 'ddddddddddd', 'ppppppppppp']
+    const isJoinCreateClassModalVisible = ref(false)
     const side_panel = [
       { text: 'Home', routing: 'classes', icon: faHome},
     ]
+    const enableJoinCreateClassModal = () => {
+      isJoinCreateClassModalVisible.value = true
+    }
+
+    const disableJoinCreateClassModal = () => {
+      isJoinCreateClassModalVisible.value = false
+    }
+
+    const addKids = (target, kid) => {
+      rooms[target].kids.push(kids[kid])
+    }
 
     function createClass() {
-        rooms.value.push({uuid: 13, name: 'test', color: 'pink', order: '13', allowedUsers: [''], pass: 'cV9bB1ms4nZx'})
+        rooms.value.push({uuid: 13, name: 'test', color: 'pink', order: '13', allowedUsers: [''], pass: 'cV9bB1ms4nZx', kids: []})
+        disableJoinCreateClassModal()
     }
 
     function onDragOver(event) {
@@ -143,5 +178,5 @@ export const useCounterStore = defineStore('counter', () => {
         }
     })
 
-    return { onDragOver, rooms, onDragLeave, onDrop, loginMe, createClass, onDragEnter, onDragStart, registerMe, draggedItemId, dragEnterId, choosenOption, currentComponent, options, side_panel, kids }
+    return { onDragOver, rooms, onDragLeave, onDrop, addKids, isJoinCreateClassModalVisible, disableJoinCreateClassModal, enableJoinCreateClassModal, loginMe, createClass, onDragEnter, onDragStart, registerMe, draggedItemId, dragEnterId, choosenOption, currentComponent, side_panel, kids }
 })
