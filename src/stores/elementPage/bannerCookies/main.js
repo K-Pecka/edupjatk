@@ -18,16 +18,10 @@ export const useBannerCookiesStore = defineStore('bannerCookies', () => {
       cookies.setShowCookies()
     }
   }
-  const logOut = {
-    property:{
-      title:"Do zobaczenia w krótce!",
-      delay:2000
-    }
-  }
 
   if (!cookies.checkCookiesAccept()) {
     cookies.setShowCookies()
   }
 
-  return { cookies, logOut }
+  return { cookies }
 })

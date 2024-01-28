@@ -22,9 +22,11 @@ console.log(message, status)
   box-sizing: border-box;
   text-align: center;
   transition: opacity 0.5s;
+  display:flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
 }
-
 .success {
   background-color: #4caf50;
   color: white;
@@ -44,4 +46,3 @@ button {
   margin-top: 5px;
 }
 </style>
-@/stores/elementPage/banner/main.js @/stores/elementPage/bannerCookies/main.js

@@ -55,8 +55,8 @@ export const useModuleStore = defineStore('modulEducation', () => {
                                 title: '"Równi i równiejsi"',
                                 content: 'Epizod ten poświęcimy na zrozumienie pojęcia "większy", "mniejszy"',
                                 src: {
-                                    folder: '/1',
-                                    image: '1.png',
+                                    folder: '/2',
+                                    image: '2.png',
                                 },
                             },
                         },
@@ -79,8 +79,8 @@ export const useModuleStore = defineStore('modulEducation', () => {
                                 title: '"Wprowadzenie do nie wiadomych"',
                                 content: 'Wyjaśnimy na czym polega nie wiadoma w matematyce',
                                 src: {
-                                    folder: '/1',
-                                    image: '1.png',
+                                    folder: '/3',
+                                    image: '3.png',
                                 },
                             },
                         },

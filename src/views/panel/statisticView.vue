@@ -1,20 +1,19 @@
 <template>
     <div class="content">
-      <h1>Wykresy Edukacyjne</h1>
       <div>
-        <h2>Wyniki testu</h2>
+        <h2>Wyniki testu:</h2>
         <div ref="pieChart"></div>
 
-        <h2>Postępy ucznia</h2>
+        <h2>Twoje postępy:</h2>
         <div ref="lineChart"></div>
 
-        <h2>Średnie ocen</h2>
+        <h2>Średnie ocen:</h2>
         <div ref="barChart"></div>
 
-        <h2>Czas nauki vs Wyniki</h2>
+        <h2>Czas nauki vs Wyniki:</h2>
         <div ref="scatterPlot"></div>
 
-        <h2>Umiejętności ucznia</h2>
+        <h2>Rozwój twoich umiejętności:</h2>
         <div ref="radarChart"></div>
       </div>
     </div>
@@ -34,7 +33,7 @@
     Highcharts.chart(pieChart.value, {
       chart: {
         type: 'pie',
-        backgroundColor: 'rgba(0, 0, 0, 0)', // Transparent background
+        backgroundColor: 'rgba(0, 0, 0, 0)',
       },
       title: {
         text: 'Wyniki testu',
@@ -43,8 +42,8 @@
         {
           name: 'Dane',
           data: [
-            ['Poprawne odpowiedzi', 75],
-            ['Błędne odpowiedzi', 25],
+            ['Poprawne odpowiedzi', 78],
+            ['Błędne odpowiedzi', 100-78],
           ],
         },
       ],
@@ -63,7 +62,7 @@
       series: [
         {
           name: 'Postępy',
-          data: [20, 40, 60, 80, 100],
+          data: [20, 40, 20, 80, 70],
         },
       ],
     });
@@ -118,16 +117,16 @@
         backgroundColor: 'rgba(0, 0, 0, 0)', // Transparent background
       },
       title: {
-        text: 'Umiejętności ucznia',
+        text: 'Umiejętności ucznia<br>Matematyka:',
       },
       xAxis: {
-        categories: ['Matematyka', 'Nauki przyrodnicze', 'Język obcy', 'Informatyka', 'Historia'],
+        categories: ['w praktyce', 'nierówności', 'równania'],
       },
       series: [
         {
           type: 'area',
-          name: 'Umiejętności',
-          data: [80, 90, 75, 85, 70],
+          name: 'Mateamtyka',
+          data: [14, 7, 8],
         },
       ],
     });
@@ -144,12 +143,15 @@
   </script>
 
   <style scoped>
-
+h2{
+  color:#333;
+}
 .content{
+  color:#333;
     margin-top:10%;
     border-radius:15px;
     padding:2em;
     width: 80%;
-    background: rgba(255, 255, 255, 0.55);;
+    background: rgba(255, 255, 255, 0.75);;
   }
   </style>

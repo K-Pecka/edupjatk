@@ -18,8 +18,10 @@ export const useFunctionStore = defineStore('function', () => {
         }
         return null;
     }
-    const deleteCookies = () =>{
-      document.cookies="";
+    const deleteCookies = (cookie) =>{
+      if (document.cookie.indexOf(cookie) !== -1) {
+        document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+      }
     }
   return { capitalizeText,getCookies,setCookies,deleteCookies }
 })

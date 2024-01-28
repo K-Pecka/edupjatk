@@ -16,19 +16,33 @@
       </div>
       <div class="question">
         <template v-if="state.level === 1">
-          <span v-for="dot in state.number1" :key="dot" class="dot"></span>
+          <h2>Gdzie jest więcej kulek?</h2>
+          <div>
+            <span v-for="dot in state.number1" :key="dot" class="dot"></span>
           <span class="comparison">[?]</span>
           <span v-for="dot in state.number2" :key="dot" class="dot"></span>
+          </div>
+          
         </template>
         <template v-else-if="state.level === 2">
-          <p>{{ state.number1 }}</p>
+          <h2>Która liczba jest większa?</h2>
+          <div>
+            <p>{{ state.number1 }}</p>
           <span class="comparison">[?]</span>
           <p>{{ state.number2 }}</p>
+          </div>
+          <div>
+            
+          </div>
+          
         </template>
         <template v-else-if="state.level === 3">
-          <p>{{ state.expression1 }}</p>
-          <span class="comparison">[?]</span>
-          <p>{{ state.expression2 }}</p>
+          <h2>Po której stronie jest więcej?</h2>
+          <div class="buttons">
+            <p>{{ state.expression1 }}</p>
+            <span class="comparison">[?]</span>
+            <p>{{ state.expression2 }}</p>
+          </div>
         </template>
       </div>
       <div class="buttons">
@@ -45,8 +59,8 @@
 </template>
 
 <script setup>
-import {reactive} from 'vue'
-
+import {reactive,ref} from 'vue'
+const answer = ref([]);
 const state = reactive({
   level: 0,
   number1: 5,
@@ -93,6 +107,7 @@ const nextQuestion = () => {
       state.number2 = num3 + num4;
       break;
   }
+  
   resetResult();
 };
 
@@ -103,6 +118,7 @@ const checkAnswer = (selectedAnswer) => {
   state.showResult = true;
   const { number1, number2 } = state;
 
+  
   let isCorrect = false;
   switch (selectedAnswer) {
     case "equal":
@@ -115,7 +131,11 @@ const checkAnswer = (selectedAnswer) => {
       isCorrect = number1 < number2;
       break;
   }
-
+  answer.value.push({
+    answer:selectedAnswer,
+    question:state
+  })
+  console.log(answer.value)
   state.resultMessage = isCorrect ? "Dobra odpowiedź!" : "Zła odpowiedź.";
   if (isCorrect) state.correctAnswers++;
 };
@@ -134,8 +154,11 @@ const resetResult = () => {
 </script>
 
 <style scoped>
+.Page *
+{
+  color: #333;
+}
 .Page {
-  background-image: url('@/assets/images/backgrounds/background-home.svg');
   background-size: cover;
   height: 98vh;
   width: 98vw;
@@ -163,6 +186,7 @@ const resetResult = () => {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  flex-direction: column;
 }
 
 .question {
@@ -172,7 +196,10 @@ const resetResult = () => {
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
-
+.buttons
+{
+  flex-direction: row;
+}
 .dot {
   width: 20px;
   height: 20px;

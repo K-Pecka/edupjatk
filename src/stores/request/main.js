@@ -28,7 +28,7 @@ export const useRequestStore = defineStore('request', () => {
             if (response.ok) {
                 const responseData = await response.json();
                 console.log('Response:', responseData);
-                return {status:"ok",token:responseData.token}
+                return {status:"ok",token:responseData,state:'register'}
             } else {
                 const errorData = await response.json();
                 console.error('Error:', errorData);
@@ -49,7 +49,7 @@ export const useRequestStore = defineStore('request', () => {
             if (response.ok) {
                 const responseData = await response.json();
                 console.log('Response:', responseData);
-                return {status:"ok",token:responseData.token}
+                return {status:"ok",token:responseData.token,state:'login'}
             } else {
                 const errorData = await response.json();
                 console.error('Error:', errorData);

@@ -1,13 +1,19 @@
 <script setup>
-import {reactive} from 'vue'
-const props = defineProps(['fields']);
-const  fields  = reactive(props.fields);
+import { reactive } from 'vue'
+const props = defineProps(['fields'])
+const fields = reactive(props.fields)
 </script>
 
 <template>
   <div v-for="field of fields" :key="field.name" class="form-element form-stack">
     <label :for="`form-${field.name}`" class="form-label">{{ field.label }}</label>
-    <input :id="`form-${field.name}`" :type="field.type" :name="field.name" v-model="field.value" required />
+    <input
+      :id="`form-${field.name}`"
+      :type="field.type"
+      :name="field.name"
+      v-model="field.value"
+      required
+    />
   </div>
 </template>
 <style>
@@ -32,7 +38,7 @@ button.login:hover {
   background: #512da8;
 }
 button.off.login {
-  color: #673ab7;
+  color: c342d0;
 }
 .logIn label {
   color: #e3e3e3;
@@ -45,12 +51,12 @@ button.off.login {
 
 .logIn input:focus,
 .logIn input:active {
-  border-color: #03a9f4;
-  color: #03a9f4;
+  border-color: #50c0bd;
+  color: #50c0bd;
 }
 
 .logIn a {
-  color: #03a9f4;
+  color: #50c0bd;
 }
 .form-element {
   margin: 1.6em 0;

@@ -14,7 +14,7 @@ let w, h;
 
 const opts = {
   particleColors: ['#8792da', '#83f2ee', '#c342d0', '#50c0bd'],
-  particleAmount: 0,
+  particleAmount: 20,
   defaultSpeed: 1,
   variantSpeed: 3,
   defaultRadius: 6,

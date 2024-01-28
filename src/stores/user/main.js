@@ -11,7 +11,7 @@ import teacherPanel from '@/components/panel/teacher/InitComponents.vue'
 export const useUserStore = defineStore('user', () => {
   const accessHTMLstore = useAccessHTMLstore()
   const { showBanner, setMessage } = useBannerStore()
-  const { login, register,getUser } = useRequestStore()
+  const { login, getUser } = useRequestStore()
   const {getCookies,setCookies,deleteCookies} = useFunctionStore()
   const path = {
     ok: router.paths.panel,
@@ -25,7 +25,7 @@ export const useUserStore = defineStore('user', () => {
     return isLoggedIn() && router.publicPath.includes(path)
   }
   function getPermission() {
-    const activeUser= {permission:'teacher'}
+    const activeUser= {permission:'user'}
     return activeUser?.permission
   }
   function getPanel() {
@@ -53,7 +53,7 @@ export const useUserStore = defineStore('user', () => {
     
     //const { surname, userName, nickName, email } = getUser(token,CSR)
     const { surname, userName, nickName, email } = {
-      surname: "Kowalski", userName:"JKowalski", nickName:"Kowal", email:"K@wp.pl"}
+      surname: "Nowak", userName:"Nowak", nickName:"JNowak", email:"Jnowak@wp.pl"}
     return (
       surname &&
       userName &&
@@ -66,11 +66,14 @@ export const useUserStore = defineStore('user', () => {
       ]
     )
   }
-
+  async function register2()
+  {
+    return {status:"ok",token:"123",state:'register'}
+  }
   async function sendData(formData, state) {
     const accessPoint = {
       logIn: login,
-      signUp: register
+      signUp: register2
     }
 
     try {
@@ -84,14 +87,22 @@ export const useUserStore = defineStore('user', () => {
     const { formData, state } = setData()
 
     return sendData(formData, state).then((response) => {
-      const {token = null, status} =response
+      const {token = null, status, state} =response
       if (status == 'ok' && token)
       {
-        setMessage('okej', 'success')
+        if(state=='login')
+          setMessage('Logowanie przebiegło pomyślnie!', 'success')
+        else 
+          setMessage('Rejestracja przebiegło pomyślnie!', 'success')
+
         setCookies({token:'userToken',value:token})
       }  
       else 
-        setMessage('okej', 'error')
+        if(state=='login'){
+          setMessage('Nie poprawne dane logowanie!', 'error')
+        } 
+        else 
+          setMessage('Rejestracja przebiegło pomyślnie!', 'success')
       showBanner()
       return path[status] || null
     })

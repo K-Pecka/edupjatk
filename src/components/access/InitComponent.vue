@@ -1,21 +1,27 @@
 <script setup>
-import BannerInfo from "@/components/stateless/bannerInfo.vue";
+import BannerInfo from '@/components/stateless/bannerInfo.vue'
 import { useUserStore } from '@/stores/user/main.js'
 import { ref } from 'vue'
 
-const isVisible = ref(false);
-const { router,accessHTMLstore } = useUserStore();
+const isVisible = ref(false)
+const { router, accessHTMLstore } = useUserStore()
 const accessTypePanel = accessHTMLstore.getState()
-const changeState = () => accessHTMLstore.changeState();
+const changeState = () => accessHTMLstore.changeState()
 
 const sendForm = async () => {
-  useUserStore().sendForm()
-    .then((response) =>{ 
+  useUserStore()
+    .sendForm()
+    .then((response) => {
       isVisible.value = true
-      return response 
+      return response
     })
-    .then((response)=>{setTimeout(()=>isVisible.value=false,2000);return response})
-    .then((path) =>{setTimeout(()=>router.goTo(path),2000)});
+    .then((response) => {
+      setTimeout(() => (isVisible.value = false), 2000)
+      return response
+    })
+    .then((path) => {
+      setTimeout(() => router.goTo(path), 2000)
+    })
 }
 </script>
 
@@ -70,15 +76,14 @@ input {
   font-weight: 300;
   font-size: 2.6em;
   margin: 0.2em 0 0.1em;
-  color: #03a9f4;
+  color: #50c0bd;
 }
-
-
+.signUp h2 {
+  color: #c342d0;
+}
 .form-element.form-submit {
   margin: 1.6em 0 0;
 }
-
-
 
 button {
   padding: 0.8em 1.2em;
@@ -100,11 +105,11 @@ button {
 }
 
 button.signup {
-  background: #03a9f4;
+  background: #50c0bd;
 }
 
 button.login {
-  background: #673ab7;
+  background: #c342d0;
 }
 
 button.off {
@@ -114,9 +119,8 @@ button.off {
 }
 
 button.off.signup {
-  color: #03a9f4;
+  color: #50c0bd;
 }
-
 
 button:focus,
 button:active,
@@ -132,7 +136,6 @@ button.signup:hover {
   background: #0288d1;
 }
 
-
 button.off:focus,
 button.off:active,
 button.off:hover {
@@ -142,8 +145,7 @@ button.off:hover {
 button.off.signup:focus,
 button.off.signup:active,
 button.off.signup:hover {
-  color: #03a9f4;
+  color: #50c0bd;
   background: #212121;
 }
-
 </style>

@@ -5,11 +5,7 @@ const props = defineProps(['time']);
 const time = props.time;
 const quest = ref("brak pytania")
 const questions = [
-`Zegar w kuchni babci jest nie poprawnie nastawiony. Spytany  taty o godzinę dowiadujesz się, że jest ${time}. Czy pomożesz babci ustawić poprawnie zegar?`,
-`Ustaw zegar na godzinę ${time}.`,
-`Ustaw zegar na godzinę ${time}.`,
-`Ustaw zegar na godzinę ${time}.`,
-`Ustaw godzinę ${time}.`,
+`Ustaw zegar na godzinę ${time}.`
 ]
 
 const getQuest = () => {

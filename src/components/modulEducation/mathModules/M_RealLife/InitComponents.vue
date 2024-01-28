@@ -3,7 +3,9 @@
     <BannerInfo v-if="isVisible" />
     <div class="row">
     <div class="col-md-8 col-sm-12 quest">
-      <QuestModul :time='formattedTime'/> 
+      <div class="quest p-4">
+          {{ `Ustaw zegar na godzinę ${formattedTime}.` }} 
+      </div>
       <HintModul :bgcolor='backgroundHighlightedNumber'/>
     </div>
     <div class="col-md-4 col-sm-12 clock"> 
@@ -29,6 +31,10 @@
           <button type="button" class="btn btn-outline-primary" @click="adjustMinutes(60)">+</button>
         </div>
       </div>
+      <div class="answer p-1">
+        <span class="p-1">Poprawnych odpowiedzi: {{answer.correct}}</span>
+        <span>Nie poprawnych odpowiedzi: {{answer.uncorrect}}</span>
+      </div>
       <div>
         <div class="btn-group config" role="group" aria-label="Basic outlined">
           <button type="button" class="btn btn-primary" @click="confirmTime">odpowiedź</button>
@@ -40,9 +46,20 @@
   </div>
 </template>
 <style scoped>
+.answer
+{
+  position:absolute;
+  bottom: 20%;
+  left: 30%;
+
+}
 .config
 {
-  transform: translate(8em,4em);
+  transform: translate(-2em,4em);
+}
+.config.btn-group
+{
+  width: 100%;
 }
 .clock
 {
@@ -75,10 +92,13 @@
 </style>
 <script setup>
 import HintModul from './HintModul.vue'
-import QuestModul from './QuestModul.vue'
 import BannerInfo from "@/components/stateless/BannerInfo.vue";
 import { ref, onMounted,computed } from 'vue'
 import { useBannerStore } from '@/stores/elementPage/banner/main.js'
+const answer=ref({
+  correct:0,
+  uncorrect:0
+})
 const { showBanner, setMessage } = useBannerStore()
 const clockCanvas = ref(null)
 
@@ -206,15 +226,18 @@ const adjustMinutes = (amount) => {
 const confirmTime = () => {
   if ((hours % 12 || 12) === (correct.value.hours % 12 || 12) && minutes === correct.value.minutes) {
     setMessage('Wykonano poprawnie','success')
+    answer.value.correct++;
     showBanner()
     drawClock()
   } else {
     setMessage('Wykonano nie poprawnie','error')
+    answer.value.uncorrect++;
     showBanner()
     drawClock()
   }
   isVisible.value = true
   setTimeout(()=>isVisible.value=false,2000)
+  setup()
 }
 function setup()
 {

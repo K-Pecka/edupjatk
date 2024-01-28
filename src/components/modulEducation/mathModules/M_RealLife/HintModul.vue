@@ -3,7 +3,7 @@ const props = defineProps(['bgcolor'])
 const bgcolor = props.bgcolor
 </script>
 <template>
-    <div class="hint">
+    <div class="hint p-4">
         <h2>Podpowiedź:</h2>
         Kolorem
       <span class="current-time-indicator" :style="{ backgroundColor: bgcolor }"></span>
