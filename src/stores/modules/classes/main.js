@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import {computed, ref} from 'vue'
-import ClassesList from '@/components/modules/classes/ClassesList.vue'
-import ModuleOne from '@/components/ModuleOne.vue' // testowe rozwiazanie
+import ClassesList from '@/components/modules/classes/InitComponent.vue'
+import ModuleOne from '@/components/educationModules/mathModules/M_quest/InitComponents.vue' // testowe rozwiazanie
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 export const useCounterStore = defineStore('counter', () => {

@@ -5,8 +5,8 @@ import { useAccessHTMLstore } from '@/stores/elementPage/accessForm/main.js'
 import { useFunctionStore } from '@/stores/function/main.js'
 import router from '@/router/index.js'
 
-import userPanel from '@/components/panel/user/InitComponents.vue'
-import teacherPanel from '@/components/panel/teacher/InitComponents.vue'
+import userPanel from '@/components/modules/panels/user/InitComponents.vue'
+import teacherPanel from '@/components/modules/panels/teacher/InitComponents.vue'
 
 export const useUserStore = defineStore('user', () => {
   const accessHTMLstore = useAccessHTMLstore()

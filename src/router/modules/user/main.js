@@ -7,7 +7,7 @@ const UserRoutes = [
   {
     path: '/access',
     name: 'access',
-    component: () => import('@/views/accessView.vue')
+    component: () => import('@/views/AccessView.vue')
   }
 ]
 

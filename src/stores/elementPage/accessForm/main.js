@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref,markRaw } from 'vue'
-import LogInForm from '@/components/access/logIn/LogInForm.vue'
-import SignUpForm from '@/components/access/signUp/SignUpForm.vue'
+import LogInForm from '@/components/modules/authentication/signIn/SignInForm.vue'
+import SignUpForm from '@/components/modules/authentication/signUp/SignUpForm.vue'
 
 export const useAccessHTMLstore = defineStore('accessFormData', () => {
   const defaultState = {

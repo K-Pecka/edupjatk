@@ -1,11 +1,11 @@
 <script setup>
-const props = defineProps(['data']);
-const {data,title} = props.data
-const subject = 'math'
+const props = defineProps(['data'])
+const { data, title } = props.data
+const subject = 'mathematics'
 </script>
 
 <template>
-  <div >
+  <div>
     <div class="p-3 mt-5">
       <h2>{{data == [] ? 'no data' : title}}</h2>
       <div class="container">
@@ -23,15 +23,15 @@ const subject = 'math'
                 </div>
               </div>
               <div :class="['col-md-6', 'order-md-last', 'order-lg-first','d-none', 'd-md-block']">
-                <img :src="`/src/assets/modulEducation/${subject}${item.imagePath}`" alt="Grafika" class="card-img img-fluid" />
+                <img :src="`/src/assets/icons/educationModules/${subject}${item.imagePath}`" alt="Grafika" class="card-img img-fluid" />
               </div>
             </div>
           </div>
         </div>
         <div v-else class="row justify-content-center">
           <div class="col-md-6 text-center">
-            <i class="fas fa-exclamation-circle fa-3x text-danger"></i>
-            <p class="mt-2">Wybrany rozdziału nie istnieje</p>
+            <i class="fas fa-exclamation-circle fa-3x text-danger"/>
+            <p class="mt-2">Wybrany rozdział nie istnieje</p>
           </div>
         </div>
       </div>
@@ -40,13 +40,12 @@ const subject = 'math'
 </template>
 
 <style scoped>
-.card-text
-{
+.card-text {
   color:#333;
   text-align: justify;
 }
-a{
+
+a {
   text-decoration: none;
 }
-
 </style>

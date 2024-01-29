@@ -23,7 +23,7 @@ const closeOffcanvas = (path) => {
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <router-link class="navbar-brand" :to="{ name: 'start' }"><img src="@/assets/logo2.png" width="30" height="30" class="d-inline-block mr-1 align-bottom" alt=""> Edupjatk</router-link>
+      <router-link class="navbar-brand" :to="{ name: 'start' }"><img src="@/assets/icons/edupjatk_logo.png" width="30" height="30" class="d-inline-block mr-1 align-bottom" alt=""> Edupjatk</router-link>
       <div
         class="offcanvas offcanvas-start text-bg-dark"
         tabindex="-1"
